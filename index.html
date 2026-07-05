@@ -677,7 +677,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2">Website URL</label>
-                            <input type="url" name="website" required class="w-full bg-slate-900/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors" placeholder="https://yourcompany.com">
+                            <input type="text" name="website" required oninput="this.setCustomValidity('')" class="w-full bg-slate-900/60 border border-white/10 rounded-xl px-4...
                         </div>
                         <div>
                             <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2">Target Monthly Goal</label>
@@ -907,7 +907,7 @@
                         if (entry.isIntersecting) {
                             safePlay(video);
                         } else {
-                            safePause(video);
+                            safePause(video); 
                         }
                     });
                 }, { threshold: 0.1 });
@@ -915,6 +915,23 @@
                 videos.forEach(video => observer.observe(video));
             }
         });
-    </script>
+    </script> 
+    <script>
+document.querySelector('form').addEventListener('submit', function(event) {
+  const websiteInput = document.querySelector('input[name="website"]');
+  if (websiteInput) {
+    const value = websiteInput.value.trim().toLowerCase();
+    const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+    if (value === 'no website' || urlPattern.test(value)) {
+      websiteInput.setCustomValidity("");
+    } else {
+      websiteInput.setCustomValidity("Please enter a valid URL or type 'no website'.");
+      event.preventDefault();
+      websiteInput.reportValidity();
+    }
+  }
+});
+</script>
 </body>
 </html>
