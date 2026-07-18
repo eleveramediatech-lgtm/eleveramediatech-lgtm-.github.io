@@ -1,11 +1,474 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Work | Elevera Media Tech</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#0B0B0B',
+                        cardBg: 'rgba(20, 20, 20, 0.7)',
+                        glowPurple: '#a855f7',
+                        glowBlue: '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0B0B;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+        /* Custom Glowing Background Elements */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+            transform: translateY(-4px);
+        }
+        .glass-nav {
+            background: rgba(11, 11, 11, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Animations helpers for vanilla build */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        /* Hide scrollbars but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body>
-    <h1>Our Work</h1>
-    <!-- You can add your images and video links here -->
-    <p>Check out our latest projects below!</p>
+<body class="font-sans antialiased">
+
+    <!-- Glowing Background Assets -->
+    <div class="glow-orb w-[600px] h-[600px] bg-glowBlue top-[-10%] left-[-10%]"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-glowPurple top-[20%] right-[-5%]"></div>
+    <div class="glow-orb w-[600px] h-[600px] bg-glowBlue top-[50%] left-[-5%]"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-glowPurple top-[80%] right-[10%]"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 md:px-12 py-4 flex justify-between items-center">
+        <a href="index.html" class="font-display flex flex-col leading-tight select-none">
+            <span class="text-white font-extrabold text-lg md:text-xl tracking-tight">Elevera</span>
+            <span class="text-slate-400 font-light text-[10px] md:text-xs tracking-widest uppercase">Media Tech</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="index.html#services" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Services</a>
+            <a href="index.html#roi-calculator" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">ROI Calculator</a>
+            <a href="index.html#packages" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Packages</a>
+            <a href="our-work.html" class="text-sm font-semibold text-white transition-colors border-b-2 border-purple-500 pb-0.5">Our Work</a>
+            <a href="index.html#audit" class="text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2.5 rounded-full hover:opacity-90 transition-opacity uppercase tracking-wider">Free Strategy Audit</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center z-10">
+        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide text-slate-300 mb-6 uppercase">
+            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Concept Portfolio
+        </div>
+        <h1 class="font-display text-4xl md:text-7xl font-bold tracking-tight text-white mb-6">
+            Our <span class="text-gradient">Work</span>
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl max-w-3xl leading-relaxed mb-12">
+            Every expert starts somewhere. These projects showcase our technical execution, data strategies, and creative design thinking through rigorous concept campaigns, growth blueprints, and transparent self-initiated systems.
+        </p>
+        
+        <!-- Interactive floating tech nodes -->
+        <div class="flex flex-wrap justify-center gap-4 text-xs font-mono tracking-wider uppercase text-slate-400 max-w-2xl">
+            <span class="floating-icon bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2"><span class="text-blue-400">#</span> SEO Strategy</span>
+            <span class="floating-icon bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2" style="animation-delay: 0.5s;"><span class="text-purple-400">#</span> Google Ads</span>
+            <span class="floating-icon bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2" style="animation-delay: 1s;"><span class="text-pink-400">#</span> Data Analytics</span>
+            <span class="floating-icon bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2" style="animation-delay: 1.5s;"><span class="text-green-400">#</span> AI Workflows</span>
+            <span class="floating-icon bg-white/5 border border-white/10 px-4 py-2 rounded-xl flex items-center gap-2" style="animation-delay: 2s;"><span class="text-yellow-400">#</span> UX / CRO</span>
+        </div>
+    </header>
+
+    <!-- Portfolio Section Dynamic Filter Controls Placeholder (Frontend-Ready Setup) -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 pb-12 z-10 relative">
+        <div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar border-b border-white/5">
+            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-full text-xs font-bold tracking-wide uppercase shadow-lg shadow-purple-500/10">All Work</button>
+            <button class="bg-white/5 border border-white/10 text-slate-400 hover:text-white px-5 py-2 rounded-full text-xs font-bold tracking-wide uppercase transition-colors">SEO</button>
+            <button class="bg-white/5 border border-white/10 text-slate-400 hover:text-white px-5 py-2 rounded-full text-xs font-bold tracking-wide uppercase transition-colors">Google Ads</button>
+            <button class="bg-white/5 border border-white/10 text-slate-400 hover:text-white px-5 py-2 rounded-full text-xs font-bold tracking-wide uppercase transition-colors">Social Infrastructure</button>
+            <button class="bg-white/5 border border-white/10 text-slate-400 hover:text-white px-5 py-2 rounded-full text-xs font-bold tracking-wide uppercase transition-colors">UI/UX Layouts</button>
+        </div>
+    </section>
+
+    <!-- Section 1: Detailed Concept Engines -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Concept Performance Blueprints</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl">Deep architectural execution frameworks demonstrating exact market knowledge and technical parameters.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1: Nike SEO -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-blue-500/10 border border-blue-500/20 text-blue-400 px-2.5 py-1 rounded-md uppercase">SEO Core Architecture</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 001</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Nike Organic Expansion Concept</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">A complete infrastructure blueprint mapping secondary tier keyword groups, advanced semantic search structures, clean schema graphs, and optimized site maps to capture untapped performance search value.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Tiered Content Modeling</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Semantic Graph Alignment</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Automated Core Web Vitals Pipeline</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">Analyze Execution Framework</a>
+            </div>
+
+            <!-- Card 2: Starbucks Google Ads -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-400 px-2.5 py-1 rounded-md uppercase">Paid Acquisition Target</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 002</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Starbucks Performance Max Strategy</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">A rigorous hyper-targeted ad strategy outlining contextual search groups, distinct high-intent display placements, smart negative match systems, and advanced programmatic retargeting networks.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Cross-Channel Asset Matrices</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Smart Intent Intent Exclusion Maps</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Modeled ROI Tracking Layer</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">View Data Blueprint</a>
+            </div>
+
+            <!-- Card 3: Apple CRO -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-pink-500/10 border border-pink-500/20 text-pink-400 px-2.5 py-1 rounded-md uppercase">Conversion Engine Design</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 003</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Premium E-Commerce Layout Optimization</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">A structural study focused on reducing checkout frictions, layout micro-improvements, image asset lazy-loading architectures, and conversion pathway enhancements for luxury layouts.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span> Checkout Friction Analysis Mapping</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span> Asset Lazy Load Configuration</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span> Core Web Vital Elevation Protocol</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">Analyze CRO Mapping</a>
+            </div>
+
+            <!-- Card 4: Real Estate Automation -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-green-500/10 border border-green-500/20 text-green-400 px-2.5 py-1 rounded-md uppercase">Marketing Automation Systems</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 004</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">High-Intent Lead Acquisition System</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">An omni-channel automated flow model utilizing granular Meta pixel configurations, instant webhook data ingestion, and multi-stage CRM lead assignment layers.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Automated Webhook Pipelines</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> Behavioral Lead Scoring Arrays</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span> WhatsApp Integration Handlers</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">Inspect Infrastructure</a>
+            </div>
+
+            <!-- Card 5: Gym Social Growth -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-2.5 py-1 rounded-md uppercase">Social Network Infrastructure</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 005</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Physical Brand Content Pipeline</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">A high-yield asset deployment system detailing audio track pattern optimization, hook structure formulas, and targeted content calendars engineered to capture platform engagement algorithms.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span> High-Retention Hook Matrices</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span> High-Velocity Asset Scheduling</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span> Dynamic Community Funnel Loops</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">Open Distribution Plan</a>
+            </div>
+
+            <!-- Card 6: Local Restaurant SEO -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-mono tracking-wider bg-red-500/10 border border-red-500/20 text-red-400 px-2.5 py-1 rounded-md uppercase">Local Search Network</span>
+                        <span class="text-xs text-slate-500 font-mono">ID: 006</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Hyper-Local Map Dominance Architecture</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">A localized technical ranking map focused on citation building protocols, geographic schema tags, and optimized entity signals required to capture regional search visibility map packs.</p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Localized Entity Association</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Regional Citation Map Protocols</div>
+                        <div class="flex items-center gap-2 text-xs text-slate-300"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Automated Review Structuring</div>
+                    </div>
+                </div>
+                <a href="#" class="w-full text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white text-xs font-bold tracking-wider py-3 rounded-xl transition-colors uppercase">Review Technical Strategy</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Rigorous Audit Laboratory -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Technical Marketing Audits</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl">Deep structural breakdowns analyzing real bottlenecks across enterprise web assets and defining specific optimization scripts.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Audit 1 -->
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-l-blue-500">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-display text-xl font-bold text-white">Nike E-Commerce Code & UX Audit</h3>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-mono px-3 py-1 rounded-full">Core Audit Layer</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-6 text-center">
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Structural Speed</div><div class="text-red-400 font-bold font-mono">41/100</div></div>
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Index Clarity</div><div class="text-yellow-400 font-bold font-mono">68/100</div></div>
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Identified Frictions</div><div class="text-white font-bold font-mono">14 Points</div></div>
+                </div>
+                <p class="text-slate-400 text-sm mb-4">Analysis pinpointed rendering bottlenecks on main product listing pages caused by unoptimized product image arrays and heavy layout compilation files.</p>
+                <a href="#" class="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-wider inline-flex items-center gap-1">Open Diagnostic File &rarr;</a>
+            </div>
+
+            <!-- Audit 2 -->
+            <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-display text-xl font-bold text-white">Instagram Brand Footprint System Analysis</h3>
+                    <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-mono px-3 py-1 rounded-full">Social Signal Layer</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-6 text-center">
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Retention Index</div><div class="text-red-400 font-bold font-mono">22%</div></div>
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Distribution Velocity</div><div class="text-yellow-400 font-bold font-mono">1.2x</div></div>
+                    <div class="bg-white/5 p-3 rounded-xl"><div class="text-xs text-slate-400 mb-1">Funnel Leaks</div><div class="text-white font-bold font-mono">3 Critical</div></div>
+                </div>
+                <p class="text-slate-400 text-sm mb-4">Identified immediate retention drops within the first two seconds of short-form media runs due to descriptive text patterns rather than dynamic kinetic layouts.</p>
+                <a href="#" class="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors uppercase tracking-wider inline-flex items-center gap-1">Open Diagnostic File &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Honest Case Studies -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Theoretical Growth Simulations</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl">Modeled optimization frameworks mapping exact strategies, system execution steps, and mathematically calculated expected returns.</p>
+        
+        <div class="glass-card rounded-2xl p-8">
+            <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+                <div>
+                    <span class="text-[10px] font-mono tracking-wider bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md uppercase">Calculated Local Simulation</span>
+                    <h3 class="font-display text-2xl font-bold text-white mt-2">Regional Commerce Visibility Architecture</h3>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs text-slate-400">Target Segment</div>
+                    <div class="text-sm font-bold text-white">Local Retail / High-Density Food Hubs</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Primary Objective</div>
+                    <div class="text-sm font-medium text-slate-200">Elevate organic maps profile visibility inside dense regional search grids.</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Technical Roadblock</div>
+                    <div class="text-sm font-medium text-slate-200">High local brand saturation coupled with absolute lack of geo-structured page markers.</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Deployed Strategy</div>
+                    <div class="text-sm font-medium text-slate-200">Reconstructed complete regional entity graph and deployed geo-coordinated citation paths.</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Expected ROI Factor</div>
+                    <div class="text-sm font-bold text-emerald-400 font-mono text-base">+140% Calculated Traffic Lift</div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/5 pt-6">
+                <h4 class="text-xs font-mono tracking-wider uppercase text-slate-400 mb-3">Mathematical Engine Parameters & Mechanics:</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    By binding specific geographic coordinates directly into the structured data schema files of target web assets, the search crawler associates the business node with local user search intents automatically. This removes manual ranking requirements and places the profile directly within high-intent localized map configurations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Agency Infrastructure Asset Showcase -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Elevera Media Tech System Infrastructure</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl">We treat our own agency as our primary product. Inspect the actual live assets we built to scale our operations.</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center hover:border-purple-500/30 transition-colors">
+                <div class="text-2xl mb-2">⚡</div>
+                <div class="text-xs font-bold text-white uppercase tracking-wider">Dynamic Web Architecture</div>
+                <div class="text-[10px] text-slate-500 font-mono mt-1">Next.js / Tailwind Codebase</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center hover:border-blue-500/30 transition-colors">
+                <div class="text-2xl mb-2">💎</div>
+                <div class="text-xs font-bold text-white uppercase tracking-wider">Corporate Brand Layout</div>
+                <div class="text-[10px] text-slate-500 font-mono mt-1">Vector Identity Engine</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center hover:border-pink-500/30 transition-colors">
+                <div class="text-2xl mb-2">📊</div>
+                <div class="text-xs font-bold text-white uppercase tracking-wider">Data Acquisition Nodes</div>
+                <div class="text-[10px] text-slate-500 font-mono mt-1">Granular Event Tracking</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl text-center hover:border-green-500/30 transition-colors">
+                <div class="text-2xl mb-2">🦾</div>
+                <div class="text-xs font-bold text-white uppercase tracking-wider">AI Lead Flows</div>
+                <div class="text-[10px] text-slate-500 font-mono mt-1">Automated Routing Script</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Technical Vector Skills Metric Engine -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Verified Technical Core Capabilities</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl">Quantifiable evaluation parameters based on production certifications and architectural experience.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
+            <div>
+                <div class="flex justify-between text-slate-300 mb-2"><span>Semantic SEO Architecture</span><span>95%</span></div>
+                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-[95%] rounded-full"></div></div>
+            </div>
+            <div>
+                <div class="flex justify-between text-slate-300 mb-2"><span>Paid Acquisition Target Modeling (Google/Meta)</span><span>92%</span></div>
+                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-[92%] rounded-full"></div></div>
+            </div>
+            <div>
+                <div class="flex justify-between text-slate-300 mb-2"><span>Conversion Framework Design & Data Attribution</span><span>90%</span></div>
+                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-[90%] rounded-full"></div></div>
+            </div>
+            <div>
+                <div class="flex justify-between text-slate-300 mb-2"><span>Automated Marketing Routing Pipelines</span><span>88%</span></div>
+                <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-500 to-purple-500 h-full w-[88%] rounded-full"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Operations Roadmap -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-8 text-center">Our Campaign Execution Architecture</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/5 relative">
+                <div class="absolute top-4 right-4 text-3xl font-bold font-display text-white/5">01</div>
+                <h3 class="text-white font-bold mb-2 uppercase text-sm tracking-wider">Deep Extraction Audit</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">We extract complete layout structure metrics and target profile positioning data to isolate conversion blocks.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/5 relative">
+                <div class="absolute top-4 right-4 text-3xl font-bold font-display text-white/5">02</div>
+                <h3 class="text-white font-bold mb-2 uppercase text-sm tracking-wider">Strategic Structuring</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">We architect targeted keyword clusters and cross-platform allocation pathways mapping directly to business margins.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/5 relative">
+                <div class="absolute top-4 right-4 text-3xl font-bold font-display text-white/5">03</div>
+                <h3 class="text-white font-bold mb-2 uppercase text-sm tracking-wider">Deployment & Scaling</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">Assets are pushed live using optimized asset arrays and high-retention structural content layouts.</p>
+            </div>
+            <div class="bg-white/5 p-6 rounded-2xl border border-white/5 relative">
+                <div class="absolute top-4 right-4 text-3xl font-bold font-display text-white/5">04</div>
+                <h3 class="text-white font-bold mb-2 uppercase text-sm tracking-wider">Attribution Audit</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">Continuous analysis via platform custom events tells us exactly where target users scale up conversions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Tech Matrix Integration Nodes -->
+    <section class="max-w-7xl mx-auto px-6 md:px-12 py-12 z-10 relative text-center">
+        <h2 class="font-display text-2xl md:text-4xl font-bold tracking-tight text-white mb-2">Our Integrated Platform Environment</h2>
+        <p class="text-slate-400 text-sm md:text-base mb-8">We deploy and manage client setups across the industry's premium performance ecosystems.</p>
+        
+        <div class="flex flex-wrap justify-center gap-3 text-xs font-mono tracking-wide text-slate-300 max-w-4xl mx-auto">
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Google Ads Engine</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">GA4 Analytics Platform</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Meta Ads Manager</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Semrush Data Analytics</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Ahrefs Crawler Array</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Figma Vector Environment</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">HubSpot Operations CRM</span>
+            <span class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">Shopify Engine Core</span>
+        </div>
+    </section>
+
+    <!-- Section 8: Transparent Pipeline Reservation -->
+    <section class="max-w-4xl mx-auto px-6 py-16 my-12 z-10 relative glass-card rounded-3xl text-center border border-purple-500/20">
+        <div class="text-3xl mb-4">🚀</div>
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-3">Enterprise Success Cases Processing</h2>
+        <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+            We are actively deploying infrastructure updates across new businesses. This section is reserved for verified data dashboards, clear traffic elevation sheets, and live production case outcomes currently in execution.
+        </p>
+    </section>
+
+    <!-- Action Conversion Block -->
+    <section class="max-w-5xl mx-auto px-6 py-20 text-center z-10 relative">
+        <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">Let's Construct Your <span class="text-gradient">Growth Engine</span></h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
+            Let's build scalable digital frameworks for your brand. Your business metrics can be our next validated production portfolio milestone.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="index.html#audit" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold tracking-wider text-xs uppercase px-8 py-4 rounded-xl shadow-xl shadow-purple-500/20 hover:opacity-95 transition-opacity">Request Strategy Architecture Audit</a>
+            <a href="index.html#contact" class="bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold tracking-wider text-xs uppercase px-8 py-4 rounded-xl transition-colors">Initiate Technical Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer System -->
+    <footer class="border-t border-white/5 bg-darkBg/80 px-6 md:px-12 py-12 z-10 relative text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-display flex flex-col leading-tight">
+                <span class="text-slate-400 font-bold text-base tracking-tight">Elevera</span>
+                <span class="text-slate-600 font-light text-[9px] tracking-widest uppercase">Media Tech</span>
+            </div>
+            <div class="flex gap-6 font-medium">
+                <a href="index.html#services" class="hover:text-slate-300 transition-colors">Services</a>
+                <a href="index.html#roi-calculator" class="hover:text-slate-300 transition-colors">ROI Calculator</a>
+                <a href="our-work.html" class="hover:text-slate-300 transition-colors">Our Work Workspace</a>
+            </div>
+            <div class="font-mono text-[10px]">&copy; 2026 Elevera Media Tech. Operational Integrity Maintained.</div>
+        </div>
+    </footer>
+
 </body>
 </html>
