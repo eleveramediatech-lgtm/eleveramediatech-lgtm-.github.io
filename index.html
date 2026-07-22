@@ -841,7 +841,7 @@ function triggerFireworkEffect(event) {
 
             trafficVal.textContent = `${traffic.toLocaleString()} visitors`;
             conversionVal.textContent = `${(conversion * 100).toFixed(1)}%`;
-            aovVal.textContent = `₹${aov.toLocaleString()}`;
+            aovVal.textContent = `${aov.toLocaleString()}`;
 
             // ROI logic: +1% CRO jump + 15% recovery improvement
             const currentRevenue = traffic * conversion * aov;
