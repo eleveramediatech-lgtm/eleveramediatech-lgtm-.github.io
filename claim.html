@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Claim Offer - Elevera Media Tech</title>
     <style>
-        /* Body with smooth scrolling and dynamic background transition */
+        /* Body with automatic slow color-changing background animation */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            height: 250vh; /* Extra height to allow scrolling effect */
-            background: linear-gradient(135deg, #000000, #4b0082, #87ceeb, #ffc0cb);
-            background-size: 400% 400%;
-            background-position: 0% 50%;
-            transition: background-position 0.1s ease-out;
-        }
-
-        /* Fixed center wrapper so the card stays in place while the background changes on scroll */
-        .page-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(135deg, #000000, #4b0082, #87ceeb, #ffc0cb);
+            background-size: 400% 400%;
+            animation: autoColorChange 15s ease infinite;
+        }
+
+        /* Smooth infinite color looping animation */
+        @keyframes autoColorChange {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .form-container {
@@ -85,57 +82,43 @@
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <div class="form-container">
-            <h2>Claim Your $9 Offer</h2>
-            <form action="https://formspree.io/f/raghavsharma8269@gmail.com" method="POST">
-                
-                <!-- Question 1: Username -->
-                <div class="form-group">
-                    <label for="username">What is your username?</label>
-                    <input type="text" id="username" name="username" required placeholder="Enter your username">
-                </div>
-
-                <!-- Question 2: Service They Want -->
-                <div class="form-group">
-                    <label for="service">What service do you want?</label>
-                    <select id="service" name="service" required>
-                        <option value="" disabled selected>Select a service</option>
-                        <option value="Digital Marketing">Digital Marketing</option>
-                        <option value="B2B Consulting">B2B Consulting</option>
-                        <option value="Automation">Automation</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <!-- Question 3: Platform -->
-                <div class="form-group">
-                    <label for="platform">Which platform?</label>
-                    <select id="platform" name="platform" required>
-                        <option value="" disabled selected>Select a platform</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Facebook">Facebook</option>
-                        <option value="LinkedIn">LinkedIn</option>
-                        <option value="Website">Website</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn">Submit & Continue</button>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Shift background gradient position dynamically based on scroll depth
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.scrollY;
-            let docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            let scrollPercent = scrollTop / docHeight;
+    <div class="form-container">
+        <h2>Claim Your $9 Offer</h2>
+        <form action="https://formspree.io/f/raghavsharma8269@gmail.com" method="POST">
             
-            // Moves the gradient position from 0% to 100% as you scroll down
-            document.body.style.backgroundPosition = (scrollPercent * 100) + '% 50%';
-        });
-    </script>
+            <!-- Question 1: Username -->
+            <div class="form-group">
+                <label for="username">What is your username?</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+
+            <!-- Question 2: Service They Want (Updated Options) -->
+            <div class="form-group">
+                <label for="service">What service do you want?</label>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="Social Media Marketing">Social Media Marketing</option>
+                    <option value="Creative Poster">Creative Poster</option>
+                    <option value="Ads">Ads</option>
+                </select>
+            </div>
+
+            <!-- Question 3: Platform -->
+            <div class="form-group">
+                <label for="platform">Which platform?</label>
+                <select id="platform" name="platform" required>
+                    <option value="" disabled selected>Select a platform</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Website">Website</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit & Continue</button>
+        </form>
+    </div>
 
 </body>
 </html>
