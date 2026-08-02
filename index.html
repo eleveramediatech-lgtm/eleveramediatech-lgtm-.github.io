@@ -312,9 +312,7 @@
             <img src="EMT_2.png" class="w-[80vw] max-w-2xl object-contain" alt="Background Logo">
         </div>
 
-   <div class="sticky-container">
-  <canvas id="scroll-canvas" width="1920" height="1080" style="width: 100%; max-width: 1000px; height: auto; display: block; margin: 0 auto; relative; z-index: 10;"></canvas>
-
+ 
  
   <!-- Content -->
   <div style="position: relative; z-index: 3; text-align: center; max-width: 900px; padding: 0 20px;">
@@ -1144,37 +1142,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const canvas = document.getElementById("scroll-canvas");
     const context = canvas.getContext("2d");
 
-    const frameCount = 9;
-
-    // Handles spaces in "SCROLL EFFECT FRAMES" properly via encodeURIComponent
-    const canvas = document.getElementById("scroll-canvas");
-    const context = canvas.getContext("2d");
-    const frameCount = 9; // Total frame count
-
-    const currentFrame = (index) =>
-      encodeURI(`SCROLL EFFECT FRAMES/frame_${String(index + 1).padStart(4, "0")}.png`);
-
-    const images = [];
-    const sequence = { frame: 0 };
-
-    let loadedCount = 0;
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === 1) {
-          render();
-        }
-      };
-      img.onerror = () => {
-        console.error("Failed to load frame image:", img.src);
-      };
-      images.push(img);
-    }
-
-    function render() {
-      const img = images[sequence.frame];
+   
       if (img && img.complete) {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
