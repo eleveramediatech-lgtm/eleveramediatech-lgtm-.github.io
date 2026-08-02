@@ -313,7 +313,7 @@
         </div>
 
    <div class="sticky-container">
-  <canvas id="scroll-canvas" style="position: relative; z-index: 1; max-width: 100%; height: auto; display: block; margin: 0 auto;"></canvas>
+  <canvas id="scroll-canvas" width="1920" height="1080" style="width: 100%; max-width: 1000px; height: auto; display: block; margin: 0 auto; relative; z-index: 10;"></canvas>
 
  
   <!-- Content -->
@@ -1147,30 +1147,28 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const frameCount = 9;
 
     // Handles spaces in "SCROLL EFFECT FRAMES" properly via encodeURIComponent
-    const currentFrame = (index) => {
-      const frameNum = (index + 1).toString().padStart(2, "0");
-      const folderName = encodeURIComponent("SCROLL EFFECT FRAMES");
-      return `./${folderName}/Frame ${frameNum} (00_${frameNum}).png`;
-    };
+    const canvas = document.getElementById("scroll-canvas");
+    const context = canvas.getContext("2d");
+    const frameCount = 9; // Total frame count
+
+    const currentFrame = (index) =>
+      encodeURI(`SCROLL EFFECT FRAMES/frame_${String(index + 1).padStart(4, "0")}.png`);
 
     const images = [];
     const sequence = { frame: 0 };
 
-    // Preload images
- let loadedCount = 0;
+    let loadedCount = 0;
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
       img.src = currentFrame(i);
       img.onload = () => {
         loadedCount++;
         if (loadedCount === 1) {
-          canvas.width = img.naturalWidth || 1920;
-          canvas.height = img.naturalHeight || 1080;
           render();
         }
       };
       img.onerror = () => {
-        console.error("Image failed to load:", img.src);
+        console.error("Failed to load frame image:", img.src);
       };
       images.push(img);
     }
@@ -1178,6 +1176,10 @@ document.querySelector('form').addEventListener('submit', function(event) {
     function render() {
       const img = images[sequence.frame];
       if (img && img.complete) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+    }
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
       }
