@@ -1,6 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
+<html lang="en" class="scroll-smooth"> 
+<head>  <!-- Scroll Animation Styles -->
+  <style>
+    .sticky-container {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 10;
+    }
+
+    #scroll-canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Founded in 2026 by Ayush Kotwal and Raghav Sharma, Elevera Media Tech offers premier B2B performance marketing, SEO, ads, and web growth strategies.">
@@ -236,7 +255,7 @@
             <span class="text-white font-extrabold uppercase tracking-tight text-lg md:text-xl">Elevera</span>
             <span class="text-slate-400 font-light text-[10px] md:text-xs tracking-widest uppercase">Media Tech</span>
         </a>
-
+         
         <!-- Menu links & Image logo on the Right -->
         <div class="flex items-center gap-4 md:gap-8">
             <div class="hidden md:flex items-center gap-8">
@@ -265,7 +284,14 @@
             </button>
         </div>
     </nav>
+    </nav>
 
+<!-- Rocket Scroll Animation Section -->
+<div style="height: 300vh;">
+  <div class="sticky-container">
+    <canvas id="scroll-canvas"></canvas>
+  </div>
+</div>
     <!-- Mobile Drawer -->
     <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-slate-950/95 backdrop-blur-lg flex-col justify-center items-center gap-8 text-2xl font-display font-semibold text-white">
         <button class="absolute top-6 right-6 text-white text-3xl" id="close-menu-btn">&times;</button>
@@ -1116,5 +1142,61 @@ document.querySelector('form').addEventListener('submit', function(event) {
         }
     });
 </script>
+
+<!-- Rocket Scroll Frame Animation Script -->
+<script>
+  const canvas = document.getElementById("scroll-canvas");
+  const context = canvas.getContext("2d");
+
+  const frameCount = 10;
+
+  // Path matches the extracted images in scroll_frames folder
+  const currentFrame = (index) => {
+    const paddedIndex = index.toString().padStart(2, "0");
+    return `./scroll_frames/Frame ${paddedIndex} (00:${paddedIndex}).png`;
+  };
+
+  const images = [];
+  const sequence = { frame: 0 };
+
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    images.push(img);
+  }
+
+  images[0].onload = () => {
+    canvas.width = images[0].naturalWidth || 1920;
+    canvas.height = images[0].naturalHeight || 1080;
+    render();
+  };
+
+  function render() {
+    const img = images[sequence.frame];
+    if (img && img.complete) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollFraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
+
+    const frameIndex = Math.min(
+      frameCount - 1,
+      Math.floor(scrollFraction * frameCount)
+    );
+
+    if (sequence.frame !== frameIndex) {
+      sequence.frame = frameIndex;
+      requestAnimationFrame(render);
+    }
+  });
+</script>
+
+</body>
+</html>
 </body>
 </html>
