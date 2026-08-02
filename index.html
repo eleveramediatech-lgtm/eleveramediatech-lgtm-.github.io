@@ -302,14 +302,14 @@
     </div>
 
     <!-- Hero / Showcase Section -->
-    <section class="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-32 pb-20 text-center overflow-hidden">
+    <section class="scroll-hero-section relative flex flex-col justify-center items-center px-6 md:px-12 pt-32 pb-20 text-center overflow-hidden" style="height: 350vh;">
         
         <!-- Giant Faded Background Logo -->
         <div class="absolute inset-0 flex justify-center items-center opacity-[0.03] pointer-events-none z-0">
             <img src="EMT_2.png" class="w-[80vw] max-w-2xl object-contain" alt="Background Logo">
         </div>
 
-        <div <section class="hero-section" style="position: relative; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #000;">
+        <div class="sticky-container">
   
   
   <!-- Dark Overlay -->
@@ -1180,11 +1180,15 @@ document.querySelector('form').addEventListener('submit', function(event) {
     }
 
     window.addEventListener("scroll", () => {
-      const scrollTop = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (maxScroll <= 0) return;
+      const scrollSection = document.querySelector(".scroll-hero-section");
+      if (!scrollSection) return;
 
-      const scrollFraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
+      const sectionTop = scrollSection.offsetTop;
+      const sectionHeight = scrollSection.offsetHeight - window.innerHeight;
+      const scrollTop = window.scrollY - sectionTop;
+
+      const scrollFraction = Math.max(0, Math.min(1, scrollTop / sectionHeight));
+
       const frameIndex = Math.min(
         frameCount - 1,
         Math.floor(scrollFraction * frameCount)
@@ -1195,7 +1199,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
         requestAnimationFrame(render);
       }
     });
-  </script>
 
 </body>
 </html>
