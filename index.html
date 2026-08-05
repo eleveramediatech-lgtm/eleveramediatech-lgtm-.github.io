@@ -36,7 +36,39 @@
     }
   </script>
 
-  <style>
+  <style> :root {
+      --aurora-bg-1: #0b0f19;
+      --aurora-bg-2: #121824;
+      --accent-color-1: #b993d6;
+      --accent-color-2: #8ca6db;
+    }
+    body.scrolled-theme {
+      --aurora-bg-1: #1a1025;
+      --aurora-bg-2: #0f0c1b;
+      --accent-color-1: #d693c0;
+      --accent-color-2: #9b8cdb;
+    }
+    body {
+      background: linear-gradient(135deg, var(--aurora-bg-1), var(--aurora-bg-2)) !important;
+      transition: background 0.8s ease-in-out;
+    }
+    .aurora-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: border-color 0.5s ease;
+    }
+    .aurora-card:hover {
+      border-color: var(--accent-color-1);
+    }
+    .gradient-text {
+      background: linear-gradient(92deg, var(--accent-color-1), var(--accent-color-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     /* ==========================================================================
        GLOBAL STYLES & RESET
        ========================================================================== */
@@ -719,7 +751,17 @@
       closeModal.addEventListener('click', () => {
         promoModal.classList.add('hidden');
       });
+    } window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const bodyElement = document.body;
+
+    if (scrollPosition > 100) {
+      bodyElement.classList.add('scrolled-theme');
+    } else {
+      bodyElement.classList.remove('scrolled-theme');
     }
-  </script>
+  });
+
+
 </body>
 </html>
