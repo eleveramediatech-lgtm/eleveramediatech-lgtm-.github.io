@@ -37,37 +37,24 @@
   </script>
 
 <style>
+  :root {
+    --accent-color-1: #ffb6c1;
+    --accent-color-2: #800080;
+  }
+
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 250vh !important;
-    background-image: linear-gradient(180deg, #000000 0%, #ffb6c1 50%, #800080 100%) !important;
+    background-image: linear-gradient(180deg, #0A0A0F 0%, #1a0b2e 35%, #2e0838 70%, #0A0A0F 100%) !important;
     background-attachment: fixed !important;
     color: #F3F4F6;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
+    transition: background 0.8s ease;
   }
 
-  .aurora-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: border-color 0.5s ease;
-  }
-  .aurora-card:hover {
-    border-color: #ffb6c1;
-  }
-  .gradient-text {
-    background: linear-gradient(92deg, #ffb6c1, #800080);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-</style>
-     /* ================= GLOBALS & RESET ================= */
   .aurora-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(16px);
@@ -85,113 +72,97 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    /* ==========================================================================
-       GLOBAL STYLES & RESET
-       ========================================================================== */
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100vh;
-      background-color: #0A0A0F;
-      color: #F3F4F6;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-    }
 
-    /* Ambient Background Mesh Gradient */
-    .bg-grid-mesh {
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.12) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.12) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.08) 0px, transparent 50%);
-      background-attachment: fixed;
-      background-size: cover;
-    }
+  /* Ambient Background Mesh Gradient */
+  .bg-grid-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.12) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+    background-size: cover;
+  }
 
-    /* Glassmorphism Structural Panels */
-    .glass-panel {
-      background: rgba(18, 18, 26, 0.80);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+  /* Glassmorphism Structural Panels */
+  .glass-panel {
+    background: rgba(18, 18, 26, 0.80);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-    /* Interactive Glass Cards */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+  /* Interactive Glass Cards */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-    .glass-card:hover {
-      border-color: rgba(255, 87, 34, 0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px -10px rgba(255, 87, 34, 0.15);
-    }
+  .glass-card:hover {
+    border-color: rgba(255, 87, 34, 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -10px rgba(255, 87, 34, 0.15);
+  }
 
-    /* Modal Animation Keyframes */
-    @keyframes modalFadeIn {
-      from { 
-        opacity: 0; 
-        transform: scale(0.92) translateY(10px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: scale(1) translateY(0); 
-      }
+  /* Modal Animation Keyframes */
+  @keyframes modalFadeIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.92) translateY(10px); 
     }
+    to { 
+      opacity: 1; 
+      transform: scale(1) translateY(0); 
+    }
+  }
 
-    .animate-modal {
-      animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+  .animate-modal {
+    animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 
-    /* Custom Input Range Styling */
-    input[type=range] {
-      -webkit-appearance: none;
-      width: 100%;
-      background: #1E1E2D;
-      border-radius: 8px;
-      height: 8px;
-      outline: none;
-    }
+  /* Custom Input Range Styling */
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: #1E1E2D;
+    border-radius: 8px;
+    height: 8px;
+    outline: none;
+  }
 
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #FF5722;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
-      transition: transform 0.15s ease;
-    }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FF5722;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+    transition: transform 0.15s ease;
+  }
 
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.2);
-    }
+  input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
 
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0A0A0F;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1F2937;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #FF5722;
-    }
-  </style>
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0F;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1F2937;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FF5722;
+  }
+</style>
 </head>
 <body class="bg-grid-mesh font-sans antialiased selection:bg-orange-500 selection:text-white min-h-screen">
 
@@ -231,7 +202,7 @@
 
           <!-- Elevera Logo Badge Avatar -->
           <a href="EMT_2.png" target="_blank" class="w-10 h-10 rounded-full border border-white/10 overflow-hidden flex items-center justify-center bg-white/5 hover:border-orange-500/50 transition-all">
-            <img src="EMT_2.png" alt="Elevera Logo" class="w-full h-full object-cover">
+            <img src="https://placehold.co/40x40/12121A/FF5722?text=EMT" alt="Elevera Logo" class="w-full h-full object-cover">
           </a>
 
           <!-- See Work Button -->
@@ -241,8 +212,8 @@
 
           <!-- YouTube Badge Link -->
           <a href="https://youtube.com/@eleveramediatechdm?si=wHVz5KXbn4lsfSrk" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold tracking-wider uppercase transition-all shadow-sm">
-  YouTube
-</a>
+            YouTube
+          </a>
         </div>
 
         <!-- Mobile Drawer Trigger Button -->
@@ -259,9 +230,9 @@
   <!-- Mobile Drawer Menu -->
   <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 text-2xl font-display font-bold">
     <button class="absolute top-6 right-6 text-white text-4xl p-2" id="close-menu-btn">&times;</button>
-    <a href="#services" class="hover:text-orange-400 transition-colors">Services</a>
-    <a href="#roi-calculator" class="hover:text-orange-400 transition-colors">ROI Calculator</a>
-    <a href="#packages" class="hover:text-orange-400 transition-colors">Packages</a>
+    <a href="#services" class="hover:text-orange-400 transition-colors mobile-link">Services</a>
+    <a href="#roi-calculator" class="hover:text-orange-400 transition-colors mobile-link">ROI Calculator</a>
+    <a href="#packages" class="hover:text-orange-400 transition-colors mobile-link">Packages</a>
     <a href="our-work.html" class="hover:text-orange-400 transition-colors">Our Work</a>
     <a href="claim.html" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-base font-bold uppercase tracking-wider">Claim Free Audit</a>
   </div>
@@ -273,7 +244,7 @@
     
     <!-- Background Watermark Logo -->
     <div class="absolute inset-0 flex justify-center items-center opacity-[0.03] pointer-events-none z-0">
-      <img src="EMT_2.png" class="w-[80vw] max-w-2xl object-contain" alt="Elevera Watermark">
+      <img src="https://placehold.co/600x600/12121A/FF5722?text=EMT" class="w-[80vw] max-w-2xl object-contain" alt="Elevera Watermark">
     </div>
 
     <div class="relative z-10 max-w-5xl mx-auto">
@@ -330,12 +301,12 @@
     
     <div class="glass-panel p-3 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative">
       <video class="w-full h-auto rounded-2xl object-cover" autoplay loop muted playsinline>
-        <source src="main-showcase.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-numbers-31950-large.mp4" type="video/mp4">
         Your browser does not support HTML video playback.
       </video>
     </div>
   </section> 
- 
+  
 
   <!-- PASTE THE $9 BANNER HERE -->
   <section class="py-16 px-6 md:px-12 max-w-6xl mx-auto">
@@ -432,46 +403,6 @@
           <p class="text-slate-400 text-sm leading-relaxed mb-6">Bridge the divide between clicks and closures. We integrate intelligent CRM automation tools that instant-verify inbound sales leads, routing them directly into your pipeline.</p>
         </div>
         <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">CRM Integration &bull; Pipeline Lead Routing</span>
-      </div>
-
-    </div>
-  </section>
-  <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Our Performance Service Suite</h2>
-      <p class="text-slate-400 text-sm md:text-base">We eliminate marketing friction points. Choose the specific mechanism to unlock immediate revenue.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Card 1 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-6 font-bold">⚡</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Automated Checkout Recovery</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Reclaim lost revenue instantly. We engineer real-time WhatsApp and email automation sequences that engage cart abandoners within 15 minutes, transforming lost interest into guaranteed sales.</p>
-        </div>
-        <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">WhatsApp &bull; Email Sequences</span>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6 font-bold">📈</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Performance Ad Bundles</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Stop burning money on general traffic. We couple hyper-targeted Meta & Google paid campaigns with high-conversion standalone landing pages to drastically multiply your active conversion rates.</p>
-        </div>
-        <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Meta &bull; Google Ads &bull; CRO</span>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6 font-bold">📍</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Hyper-Local Maps SEO</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Dominating localized buyer search intent. We optimize your business layout engine and review funnels to plant your brand firmly within the top 3 spots on Google Maps for local foot traffic.</p>
-        </div>
-        <span class="text-[10px] font-bold text-pink-400 uppercase tracking-widest">Google Maps &bull; Local Funnels</span>
       </div>
 
     </div>
@@ -695,18 +626,19 @@
        9. POP-UP MODAL ($9 SOCIAL MEDIA MARKETING)
        ========================================================================== -->
   <div id="promo-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-  <div class="relative w-full max-w-xl rounded-3xl bg-slate-950 border border-purple-500/30 p-4 text-center shadow-2xl overflow-hidden animate-modal">
-    
-    <!-- Close Button -->
-    <button id="close-modal" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black p-2 rounded-full z-10">&times;</button>
+    <div class="relative w-full max-w-xl rounded-3xl bg-slate-950 border border-purple-500/30 p-4 text-center shadow-2xl overflow-hidden animate-modal">
+      
+      <!-- Close Button -->
+      <button id="close-modal" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black p-2 rounded-full z-10">&times;</button>
 
-    <!-- Uploaded Popup Image Link -->
-    <a href="claim.html">
-      <img src="web%20pop%20up.png" alt="Social Media Marketing $9/month" class="w-full h-auto rounded-2xl shadow-lg transform transition hover:scale-[1.01]">
-    </a>
+      <!-- Uploaded Popup Image Link -->
+      <a href="claim.html">
+        <img src="https://placehold.co/600x650/12121A/FF5722?text=Social+Media+Marketing+%249/mo" alt="Social Media Marketing $9/month" class="w-full h-auto rounded-2xl shadow-lg transform transition hover:scale-[1.01]">
+      </a>
 
+    </div>
   </div>
-</div>
+
   <!-- ==========================================================================
        10. CLIENT SCRIPTING ENGINE
        ========================================================================== -->
@@ -715,10 +647,14 @@
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('close-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
 
     if (mobileBtn && closeBtn && mobileMenu) {
       mobileBtn.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
       closeBtn.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
     }
 
     // Dynamic Revenue Estimator Script
@@ -754,33 +690,42 @@
       aovSlider.addEventListener('input', calculateROI);
     }
 
+    // Scroll-Triggered Dynamic Color Transition Effects
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollPos / (docHeight || 1);
+
+      // Dynamically shift background gradient colors smoothly on scroll
+      let bgGradient;
+      if (scrollPercent < 0.3) {
+        bgGradient = 'linear-gradient(180deg, #0A0A0F 0%, #1a0b2e 50%, #2e0838 100%)';
+      } else if (scrollPercent < 0.6) {
+        bgGradient = 'linear-gradient(180deg, #1a0b2e 0%, #3b0d26 50%, #1f0524 100%)';
+      } else {
+        bgGradient = 'linear-gradient(180deg, #2e0838 0%, #150926 50%, #0A0A0F 100%)';
+      }
+      document.body.style.backgroundImage = bgGradient;
+    });
+
     // Scroll-Triggered $9 Promo Pop-up Modal Script
     const promoModal = document.getElementById('promo-modal');
-    const closeModal = document.getElementById('close-modal');
+    const closeModalBtn = document.getElementById('close-modal');
     let modalShown = false;
 
     window.addEventListener('scroll', () => {
-      if (!modalShown && window.scrollY > 300) {
+      if (!modalShown && window.scrollY > 400 && promoModal) {
         promoModal.classList.remove('hidden');
         modalShown = true;
       }
     });
 
-    if (closeModal) {
-      closeModal.addEventListener('click', () => {
+    if (closeModalBtn && promoModal) {
+      closeModalBtn.addEventListener('click', () => {
         promoModal.classList.add('hidden');
       });
-    } window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const bodyElement = document.body;
-
-    if (scrollPosition > 100) {
-      bodyElement.classList.add('scrolled-theme');
-    } else {
-      bodyElement.classList.remove('scrolled-theme');
     }
-  });
-
+  </script>
 
 </body>
 </html>
