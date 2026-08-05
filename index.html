@@ -9,10 +9,10 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Custom Fonts -->
+  <!-- Custom Fonts: Outfit & Plus Jakarta Sans for Minimalist Luxury Aesthetic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -20,7 +20,7 @@
         extend: {
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
           },
           colors: {
             brand: {
@@ -37,38 +37,40 @@
   </script>
 
 <style>
-  :root {
-    --accent-color-1: #ffb6c1;
-    --accent-color-2: #800080;
-  }
-
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 250vh !important;
-    background-image: linear-gradient(180deg, #0A0A0F 0%, #1a0b2e 35%, #2e0838 70%, #0A0A0F 100%) !important;
+    background-image: linear-gradient(180deg, #050508 0%, #12081f 50%, #1f0b1a 100%) !important;
     background-attachment: fixed !important;
-    color: #F3F4F6;
+    color: #E2E8F0;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
     transition: background 0.8s ease;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.03em;
   }
 
   .aurora-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: border-color 0.5s ease;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .aurora-card:hover {
-    border-color: var(--accent-color-1);
+    border-color: rgba(255, 87, 34, 0.3);
   }
+
   .gradient-text {
-    background: linear-gradient(92deg, var(--accent-color-1), var(--accent-color-2));
+    background: linear-gradient(92deg, #ffb6c1, #c084fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -76,41 +78,41 @@
   /* Ambient Background Mesh Gradient */
   .bg-grid-mesh {
     background-image: 
-      radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.12) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.08) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
     background-attachment: fixed;
     background-size: cover;
   }
 
   /* Glassmorphism Structural Panels */
   .glass-panel {
-    background: rgba(18, 18, 26, 0.80);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(14, 14, 20, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   /* Interactive Glass Cards */
   .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .glass-card:hover {
-    border-color: rgba(255, 87, 34, 0.35);
+    border-color: rgba(255, 87, 34, 0.3);
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px -10px rgba(255, 87, 34, 0.15);
+    box-shadow: 0 20px 40px -15px rgba(255, 87, 34, 0.1);
   }
 
   /* Modal Animation Keyframes */
   @keyframes modalFadeIn {
     from { 
       opacity: 0; 
-      transform: scale(0.92) translateY(10px); 
+      transform: scale(0.95) translateY(15px); 
     }
     to { 
       opacity: 1; 
@@ -119,45 +121,45 @@
   }
 
   .animate-modal {
-    animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   /* Custom Input Range Styling */
   input[type=range] {
     -webkit-appearance: none;
     width: 100%;
-    background: #1E1E2D;
+    background: #181824;
     border-radius: 8px;
-    height: 8px;
+    height: 6px;
     outline: none;
   }
 
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: #FF5722;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
-    transition: transform 0.15s ease;
+    box-shadow: 0 0 12px rgba(255, 87, 34, 0.6);
+    transition: transform 0.2s ease;
   }
 
   input[type=range]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
   }
 
   /* Scrollbar Styling */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0A0A0F;
+    background: #050508;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1F2937;
-    border-radius: 4px;
+    background: #1e1e2d;
+    border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #FF5722;
@@ -182,12 +184,12 @@
           </div>
           <div class="flex flex-col">
             <span class="font-display font-bold tracking-wider text-base text-white leading-none">ELEVERA</span>
-            <span class="text-[8px] tracking-widest text-slate-400 uppercase mt-0.5">MEDIA TECH</span>
+            <span class="text-[8px] tracking-widest text-slate-400 uppercase mt-0.5 font-medium">MEDIA TECH</span>
           </div>
         </a>
 
         <!-- Navigation Links -->
-        <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <div class="hidden lg:flex items-center gap-8 text-xs font-medium tracking-wide text-slate-300">
           <a href="#services" class="hover:text-orange-400 transition-colors">Services</a>
           <a href="#roi-calculator" class="hover:text-orange-400 transition-colors">ROI Calculator</a>
           <a href="#packages" class="hover:text-orange-400 transition-colors">Packages</a>
@@ -196,24 +198,32 @@
 
         <!-- Top Right Action Suite -->
         <div class="hidden sm:flex items-center gap-3">
-          <a href="claim.html" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-xs font-bold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
-            Free Strategy Audit
+          <a href="claim.html" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-[11px] font-semibold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
+            Book Appointment
           </a>
 
           <!-- Elevera Logo Badge Avatar -->
-          <a href="EMT_2.png" target="_blank" class="w-10 h-10 rounded-full border border-white/10 overflow-hidden flex items-center justify-center bg-white/5 hover:border-orange-500/50 transition-all">
-            <img src="https://placehold.co/40x40/12121A/FF5722?text=EMT" alt="Elevera Logo" class="w-full h-full object-cover">
+          <a href="EMT_2.png" target="_blank" class="w-9 h-9 rounded-full border border-white/10 overflow-hidden flex items-center justify-center bg-white/5 hover:border-orange-500/50 transition-all">
+            <img src="EMT_2.png" alt="Elevera Logo" class="w-full h-full object-cover">
           </a>
 
           <!-- See Work Button -->
-          <a href="our-work.html" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-[11px] font-semibold tracking-wider text-slate-300 transition-all uppercase">
+          <a href="our-work.html" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-[10px] font-semibold tracking-wider text-slate-300 transition-all uppercase">
             SEE WORK
           </a>
 
-          <!-- YouTube Badge Link -->
-          <a href="https://youtube.com/@eleveramediatechdm?si=wHVz5KXbn4lsfSrk" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold tracking-wider uppercase transition-all shadow-sm">
-            YouTube
-          </a>
+          <!-- Social Icon Links -->
+          <div class="flex items-center gap-1.5 pl-3 border-l border-white/10 ml-1">
+            <a href="https://www.instagram.com/eleveramediatech/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 hover:bg-gradient-to-tr hover:from-purple-500 hover:to-pink-500 text-slate-300 hover:text-white transition-all shadow-sm" title="Instagram">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/elevera-media-tech/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 hover:bg-[#0A66C2] text-slate-300 hover:text-white transition-all shadow-sm" title="LinkedIn">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://youtube.com/@eleveramediatechdm?si=wHVz5KXbn4lsfSrk" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-red-600/90 hover:bg-red-600 text-white transition-all shadow-sm" title="YouTube">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
         </div>
 
         <!-- Mobile Drawer Trigger Button -->
@@ -228,13 +238,27 @@
   </nav>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 text-2xl font-display font-bold">
-    <button class="absolute top-6 right-6 text-white text-4xl p-2" id="close-menu-btn">&times;</button>
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex flex-col justify-center items-center gap-6 text-xl font-display font-medium">
+    <button class="absolute top-6 right-6 text-white text-3xl p-2" id="close-menu-btn">&times;</button>
     <a href="#services" class="hover:text-orange-400 transition-colors mobile-link">Services</a>
     <a href="#roi-calculator" class="hover:text-orange-400 transition-colors mobile-link">ROI Calculator</a>
     <a href="#packages" class="hover:text-orange-400 transition-colors mobile-link">Packages</a>
-    <a href="our-work.html" class="hover:text-orange-400 transition-colors">Our Work</a>
-    <a href="claim.html" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-base font-bold uppercase tracking-wider">Claim Free Audit</a>
+    <a href="our-work.html" class="hover:text-orange-400 transition-colors mobile-link">Our Work</a>
+    
+    <!-- Mobile Social Links -->
+    <div class="flex items-center gap-6 mt-2">
+      <a href="https://www.instagram.com/eleveramediatech/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-pink-500 transition-colors">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/company/elevera-media-tech/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0A66C2] transition-colors">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <a href="https://youtube.com/@eleveramediatechdm?si=wHVz5KXbn4lsfSrk" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-red-600 transition-colors">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+
+    <a href="#appointment" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-xs font-bold uppercase tracking-wider mt-4">Book Appointment</a>
   </div>
 
   <!-- ==========================================================================
@@ -243,49 +267,56 @@
   <section class="relative min-h-screen flex flex-col justify-center items-center px-6 md:px-12 pt-32 pb-20 text-center overflow-hidden">
     
     <!-- Background Watermark Logo -->
-    <div class="absolute inset-0 flex justify-center items-center opacity-[0.03] pointer-events-none z-0">
-      <img src="https://placehold.co/600x600/12121A/FF5722?text=EMT" class="w-[80vw] max-w-2xl object-contain" alt="Elevera Watermark">
+    <div class="absolute inset-0 flex justify-center items-center opacity-[0.02] pointer-events-none z-0">
+      <img src="EMT_2.png" class="w-[80vw] max-w-2xl object-contain" alt="Elevera Watermark">
     </div>
 
     <div class="relative z-10 max-w-5xl mx-auto">
       
       <!-- Live Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-xs font-semibold text-slate-300 mb-8 border border-white/10">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        100% Data-Proven Solutions Only
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-[11px] font-medium text-slate-300 mb-8 border border-white/10 tracking-wide">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+        Data-Driven Performance Growth Only
       </div>
 
       <!-- Main Headline -->
-      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]">
-        We Just Solve Problems <br class="hidden sm:inline">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-400 to-pink-400">And Let Customers Find You On Their Own.</span>
+      <h1 class="font-display text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.15]">
+        We just solve problems. <br class="hidden sm:inline">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-purple-300 to-pink-400 font-normal">Let customers find you on their own.</span>
       </h1>
 
-      <!-- Narrative Subtitle -->
-      <p class="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-        Zero guessing. Zero superficial metrics. We construct high-converting landing architectures and multi-channel automation sequences to grow your business natively.
+      <!-- Narrative Subtitle / Marketing Facts -->
+      <p class="text-sm md:text-base text-slate-400 max-w-xl mx-auto mb-6 font-light leading-relaxed">
+        Zero fluff. High-conversion architectures and automated funnels built natively to drive sustained revenue for modern brands.
       </p>
 
+      <!-- Small Facts About Marketing -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10 text-[11px] text-slate-400 font-light">
+        <span class="px-3 py-1 rounded-full glass-panel border border-white/5">💡 73% of users judge brand credibility by design</span>
+        <span class="px-3 py-1 rounded-full glass-panel border border-white/5">⚡ 1s delay reduces conversions by 20%</span>
+        <span class="px-3 py-1 rounded-full glass-panel border border-white/5">📈 Automated funnels boost ROI up to 3x</span>
+      </div>
+
       <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="claim.html" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-bold tracking-wide uppercase text-xs shadow-lg shadow-orange-500/20 hover:opacity-95 transition-all">
-          Claim Free Strategy Audit
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <a href="#appointment" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-semibold tracking-wider uppercase text-[11px] shadow-lg shadow-orange-500/20 hover:opacity-95 transition-all">
+          Book Appointment
         </a>
-        <a href="#roi-calculator" class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel hover:bg-white/10 text-white font-bold text-xs transition-all border border-white/10 tracking-wide uppercase">
-          Calculate My ROI Upside
+        <a href="#roi-calculator" class="w-full sm:w-auto px-7 py-3.5 rounded-full glass-panel hover:bg-white/10 text-white font-semibold text-[11px] transition-all border border-white/10 tracking-wider uppercase">
+          Calculate ROI Upside
         </a>
       </div>
 
       <!-- Trust Badges Bar -->
-      <div class="mt-16 pt-10 border-t border-white/5 flex flex-wrap justify-center items-center gap-8 md:gap-16 text-slate-400 text-xs uppercase tracking-widest font-semibold">
+      <div class="mt-16 pt-8 border-t border-white/5 flex flex-wrap justify-center items-center gap-8 md:gap-16 text-slate-400 text-[11px] uppercase tracking-widest font-medium">
         <div class="flex items-center gap-2">
-          <span class="text-orange-400 font-bold">✓</span> 100% Custom Systems
+          <span class="text-orange-400 font-bold">&bull;</span> Custom Systems
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-purple-400 font-bold">✓</span> 24/7 Automated Pipeline
+          <span class="text-purple-400 font-bold">&bull;</span> Automated Pipelines
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-pink-400 font-bold">✓</span> ROAS Focused Design
+          <span class="text-pink-400 font-bold">&bull;</span> ROAS Focused
         </div>
       </div>
 
@@ -293,14 +324,15 @@
   </section>
 
   <!-- ==========================================================================
-       3. VIDEO SHOWCASE SECTION
+       3. VIDEO SHOWCASE SECTION (Max Size, Loop, Muted, No Controls)
        ========================================================================== -->
-  <section class="py-20 px-6 md:px-12 max-w-6xl mx-auto text-center">
-    <span class="text-xs font-bold text-orange-400 tracking-widest uppercase mb-3 block">OUR PERFORMANCE FRAMEWORKS</span>
-    <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-12">Scale Through Strategic Content</h2>
+  <section class="py-20 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto text-center">
+    <span class="text-[11px] font-semibold text-orange-400 tracking-widest uppercase mb-3 block">FRAMEWORKS IN ACTION</span>
+    <h2 class="font-display text-2xl sm:text-4xl font-semibold text-white mb-10">Scale Through Strategic Content</h2>
     
-    <div class="glass-panel p-3 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative">
-      <video class="w-full h-auto rounded-2xl object-cover" autoplay loop muted playsinline>
+    <div class="glass-panel p-2 sm:p-4 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative w-full">
+      <video class="w-full h-[65vh] sm:h-[75vh] md:h-[85vh] rounded-2xl object-cover shadow-2xl pointer-events-none" autoplay loop muted playsinline>
+        <source src="main-showcase.mp4" type="video/mp4">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-numbers-31950-large.mp4" type="video/mp4">
         Your browser does not support HTML video playback.
       </video>
@@ -308,26 +340,26 @@
   </section> 
   
 
-  <!-- PASTE THE $9 BANNER HERE -->
-  <section class="py-16 px-6 md:px-12 max-w-6xl mx-auto">
-    <div class="glass-panel p-8 md:p-14 rounded-3xl border border-sky-500/20 bg-gradient-to-br from-sky-950/40 via-slate-900/80 to-slate-950 text-center relative overflow-hidden shadow-2xl">
+  <!-- $9 BANNER SECTION -->
+  <section class="py-16 px-6 md:px-12 max-w-5xl mx-auto">
+    <div class="glass-panel p-8 md:p-12 rounded-3xl border border-sky-500/20 bg-gradient-to-br from-sky-950/30 via-slate-900/60 to-slate-950 text-center relative overflow-hidden shadow-2xl">
       
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-xs font-semibold text-sky-300 mb-6 uppercase tracking-wider">
-        <span>🚀</span> GROW YOUR BRAND
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-400/20 text-[11px] font-medium text-sky-300 mb-6 uppercase tracking-wider">
+        <span>&bull;</span> GROW YOUR BRAND
       </div>
 
-      <h2 class="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+      <h2 class="font-display text-2xl sm:text-4xl md:text-5xl font-semibold text-white mb-3 tracking-tight leading-tight">
         Social media marketing <br class="hidden sm:inline">
-        starts from <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-white to-sky-200">$9</span>
+        starting from <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-white to-sky-200">$9</span>
       </h2>
 
-      <p class="text-sm md:text-base text-slate-300 max-w-xl mx-auto mb-8 font-light leading-relaxed">
-        Effective strategies. Better engagement. Real results for your business.
+      <p class="text-xs md:text-sm text-slate-400 max-w-md mx-auto mb-8 font-light leading-relaxed">
+        Effective strategies. Clean execution. Real results for your business.
       </p>
 
       <div>
-        <a href="claim.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-bold text-xs md:text-sm uppercase tracking-wider shadow-lg shadow-purple-500/25 hover:opacity-95 transition-all">
-          <span>📅</span> BOOK NOW ASAP
+        <a href="claim.html" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-semibold text-[11px] uppercase tracking-wider shadow-lg shadow-purple-500/20 hover:opacity-95 transition-all">
+          <span>&bull;</span> BOOK APPOINTMENT ASAP
         </a>
       </div>
 
@@ -335,87 +367,13 @@
   </section>
 
   <!-- ==========================================================================
-       4. SERVICE SUITE MATRIX 
-       ========================================================================== --> 
-  <section id="services" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Our Performance Service Suite</h2>
-      <p class="text-slate-400 text-sm md:text-base">We eliminate marketing friction points. Choose the specific mechanism to unlock immediate revenue.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Card 1 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-6 font-bold">⚡</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Automated Checkout Recovery</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Reclaim lost revenue instantly. We engineer real-time WhatsApp and email automation sequences that engage cart abandoners within 15 minutes, transforming lost interest into guaranteed sales.</p>
-        </div>
-        <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">WhatsApp &bull; Email Sequences</span>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6 font-bold">📈</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Performance Ad Bundles</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Stop burning money on general traffic. We couple hyper-targeted Meta & Google paid campaigns with high-conversion standalone landing pages to drastically multiply your active conversion rates.</p>
-        </div>
-        <span class="text-[10px] font-bold text-purple-400 uppercase tracking-widest">Meta &bull; Google Ads &bull; CRO</span>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6 font-bold">📍</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Hyper-Local Maps SEO</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Dominating localized buyer search intent. We optimize your business layout engine and review funnels to plant your brand firmly within the top 3 spots on Google Maps for local foot traffic.</p>
-        </div>
-        <span class="text-[10px] font-bold text-pink-400 uppercase tracking-widest">Google Maps &bull; Local Funnels</span>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 font-bold">🧪</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Conversion Optimization</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Maximize your current platform capability. By tracking digital user heatmaps and administering clear A/B interface testing, we systematically optimize conversion bottlenecks across all pages.</p>
-        </div>
-        <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">A/B Testing &bull; Heatmaps</span>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 font-bold">🧠</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">AI-Engine Optimization (AEO)</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Future-proof your discoverability. We restructure your public digital data models and FAQs so modern AI systems confidently index and feature your services in generative search query answers.</p>
-        </div>
-        <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Generative AI Search &bull; Indexing</span>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
-        <div>
-          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 font-bold">⚙️</div>
-          <h3 class="font-display text-xl font-bold text-white mb-3">Data Infrastructure & CRM</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">Bridge the divide between clicks and closures. We integrate intelligent CRM automation tools that instant-verify inbound sales leads, routing them directly into your pipeline.</p>
-        </div>
-        <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">CRM Integration &bull; Pipeline Lead Routing</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       5. DYNAMIC REVENUE GROWTH ESTIMATOR
+       5. DYNAMIC REVENUE GROWTH ESTIMATOR (Starts from 0)
        ========================================================================== -->
   <section id="roi-calculator" class="py-20 px-6 md:px-12 max-w-5xl mx-auto">
     <div class="text-center mb-12">
-      <span class="text-xs font-bold text-orange-400 tracking-widest uppercase mb-2 block">PROVE THE VALUE FIRST</span>
-      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-3">Dynamic Revenue Growth Estimator</h2>
-      <p class="text-slate-400 text-sm">Drag the sliders to estimate how much "hidden" revenue Elevera Media Tech can recover for your business.</p>
+      <span class="text-[11px] font-semibold text-orange-400 tracking-widest uppercase mb-2 block">PROVE VALUE FIRST</span>
+      <h2 class="font-display text-2xl sm:text-4xl font-semibold text-white mb-2">Revenue Growth Estimator</h2>
+      <p class="text-slate-400 text-xs font-light">Drag sliders to estimate hidden revenue potential for your business.</p>
     </div>
 
     <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -423,41 +381,41 @@
       <!-- Sliders Side -->
       <div class="space-y-6">
         <div>
-          <div class="flex justify-between text-xs font-semibold mb-2">
+          <div class="flex justify-between text-xs font-medium mb-2">
             <span class="text-slate-300">Monthly Website Traffic</span>
-            <span id="traffic-val" class="text-orange-400 font-bold">50,000 visitors</span>
+            <span id="traffic-val" class="text-orange-400 font-semibold">0 visitors</span>
           </div>
-          <input type="range" id="traffic-slider" min="10000" max="200000" step="5000" value="50000">
+          <input type="range" id="traffic-slider" min="0" max="200000" step="5000" value="0">
         </div>
 
         <div>
-          <div class="flex justify-between text-xs font-semibold mb-2">
+          <div class="flex justify-between text-xs font-medium mb-2">
             <span class="text-slate-300">Current Conversion Rate</span>
-            <span id="cr-val" class="text-purple-400 font-bold">1.5%</span>
+            <span id="cr-val" class="text-purple-400 font-semibold">0.0%</span>
           </div>
-          <input type="range" id="cr-slider" min="0.5" max="5.0" step="0.1" value="1.5">
+          <input type="range" id="cr-slider" min="0" max="5.0" step="0.1" value="0">
         </div>
 
         <div>
-          <div class="flex justify-between text-xs font-semibold mb-2">
+          <div class="flex justify-between text-xs font-medium mb-2">
             <span class="text-slate-300">Average Order Value (AOV)</span>
-            <span id="aov-val" class="text-pink-400 font-bold">2,500</span>
+            <span id="aov-val" class="text-pink-400 font-semibold">0</span>
           </div>
-          <input type="range" id="aov-slider" min="500" max="10000" step="250" value="2500">
+          <input type="range" id="aov-slider" min="0" max="10000" step="250" value="0">
         </div>
       </div>
 
       <!-- Projected Output Card -->
       <div class="glass-card p-8 rounded-2xl text-center border border-white/10 flex flex-col justify-center items-center">
-        <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">YOUR RECOVERED ANNUAL REVENUE</span>
-        <div id="projected-revenue" class="font-display text-3xl sm:text-5xl font-extrabold text-white mb-3">
-          $20,625,000
+        <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold mb-2">RECOVERED ANNUAL REVENUE</span>
+        <div id="projected-revenue" class="font-display text-3xl sm:text-4xl font-bold text-white mb-3">
+          $0
         </div>
-        <p class="text-[10px] text-slate-400 mb-6 leading-relaxed max-w-xs">
-          *Estimated based on applying standard 15% abandoned cart recovery + 1% Conversion Rate Optimization (CRO) increases.
+        <p class="text-[10px] text-slate-400 mb-6 font-light leading-relaxed max-w-xs">
+          *Estimated based on applying standard 15% abandoned cart recovery + 1% CRO increases.
         </p>
-        <a href="claim.html" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg">
-          Capture This Revenue Upside
+        <a href="#appointment" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg">
+          Book Appointment
         </a>
       </div>
 
@@ -468,67 +426,66 @@
        6. GROWTH PACKAGES & TIERS
        ========================================================================== -->
   <section id="packages" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <!-- Tier 1 -->
       <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-white/5 relative">
         <div>
-          <span class="text-[10px] font-extrabold text-orange-400 tracking-widest uppercase">STARTER TIER</span>
-          <h3 class="font-display text-2xl font-bold text-white mt-1 mb-3">Local Market Dominator</h3>
-          <p class="text-slate-400 text-xs mb-6">Ideal for local clinics, gyms, salons, and real estate offices looking to capture nearby foot traffic.</p>
-          <ul class="space-y-3 text-xs text-slate-300 mb-8">
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Google Maps (GMB) Optimization</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> 8 custom Reels/Shorts per Month</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Automated Review Funnel SMS Setup</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Competitor Keyword Mapping</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Monthly Traffic Reports</li>
+          <span class="text-[10px] font-bold text-orange-400 tracking-widest uppercase">STARTER TIER</span>
+          <h3 class="font-display text-xl font-semibold text-white mt-1 mb-2">Local Market Dominator</h3>
+          <p class="text-slate-400 text-xs font-light mb-6">Ideal for local clinics, gyms, salons, and offices capturing nearby foot traffic.</p>
+          <ul class="space-y-3 text-xs text-slate-300 font-light mb-8">
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Google Maps Optimization</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> 8 custom Reels/Shorts per Month</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Automated Review Funnel SMS</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Competitor Keyword Mapping</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Monthly Traffic Reports</li>
           </ul>
         </div>
         <div>
-          <a href="claim.html" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-bold text-xs uppercase tracking-wider text-white block">Get Started</a>
-          <span class="text-[9px] text-slate-500 text-center block mt-2 font-bold tracking-widest uppercase">🔒 MIN. 3-MONTH COMMITMENT</span>
+          <a href="claim.html" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-semibold text-xs uppercase tracking-wider text-white block">Book Appointment</a>
+          <span class="text-[9px] text-slate-500 text-center block mt-2 font-medium tracking-widest uppercase">MIN. 3-MONTH COMMITMENT</span>
         </div>
       </div>
 
       <!-- Tier 2 (Highlighted) -->
-      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-2 border-orange-500/60 relative bg-slate-900/40">
-        <div class="absolute -top-3 right-8 bg-gradient-to-r from-orange-500 to-purple-600 px-3 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest text-white">FLAGSHIP TIER</div>
+      <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-2 border-orange-500/50 relative bg-slate-900/30">
+        <div class="absolute -top-3 right-8 bg-gradient-to-r from-orange-500 to-purple-600 px-3 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-widest text-white">FLAGSHIP TIER</div>
         <div>
-          <span class="text-orange-400 text-lg mb-1 block">🔥</span>
-          <h3 class="font-display text-2xl font-bold text-white mb-3">The Revenue Multiplier</h3>
-          <p class="text-slate-400 text-xs mb-6">Ideal for growing e-commerce stores, D2C brands, and digital service providers ready to scale fast.</p>
-          <ul class="space-y-3 text-xs text-slate-300 mb-8">
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> 1x Glassmorphic Landing Page Funnel</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Meta & Google Paid Ad Architecture</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> 12 High-Intent Ad Creatives / mo</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Cart Recovery (WhatsApp Automation)</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Routine A/B Conversion Testing</li>
+          <span class="text-orange-400 text-base mb-1 block">&bull;</span>
+          <h3 class="font-display text-xl font-semibold text-white mb-2">The Revenue Multiplier</h3>
+          <p class="text-slate-400 text-xs font-light mb-6">Ideal for e-commerce stores and digital service providers scaling fast.</p>
+          <ul class="space-y-3 text-xs text-slate-300 font-light mb-8">
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Glassmorphic Landing Funnel</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Meta & Google Ad Architecture</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> 12 High-Intent Ad Creatives / mo</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Cart Recovery Automation</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Routine A/B Testing</li>
           </ul>
         </div>
         <div>
-          <a href="claim.html" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-bold text-xs uppercase tracking-wider text-white block">Scale Now</a>
-          <span class="text-[9px] text-slate-500 text-center block mt-2 font-bold tracking-widest uppercase">🔒 MIN. 3-MONTH COMMITMENT</span>
+          <a href="claim.html" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-semibold text-xs uppercase tracking-wider text-white block">Book Appointment</a>
+          <span class="text-[9px] text-slate-500 text-center block mt-2 font-medium tracking-widest uppercase">MIN. 3-MONTH COMMITMENT</span>
         </div>
       </div>
 
       <!-- Tier 3 -->
       <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-white/5 relative">
         <div>
-          <span class="text-[10px] font-extrabold text-orange-400 tracking-widest uppercase">ENTERPRISE TIER</span>
-          <span class="text-orange-400 text-lg ml-2">👑</span>
-          <h3 class="font-display text-2xl font-bold text-white mt-1 mb-3">Next-Gen Omnichannel</h3>
-          <p class="text-slate-400 text-xs mb-6">Ideal for corporate brands, multi-location franchises, and funded startups hunting for absolute dominance.</p>
-          <ul class="space-y-3 text-xs text-slate-300 mb-8">
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Everything in Tiers 1 & 2</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> AI Engine (ChatGPT/Gemini) Search Optimization</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> CRO Heatmap Interface Audit</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> CRM Pipeline Sales Automation</li>
-            <li class="flex items-center gap-2"><span class="text-orange-400">✓</span> Full Sourced Influencer Operations</li>
+          <span class="text-[10px] font-bold text-orange-400 tracking-widest uppercase">ENTERPRISE TIER</span>
+          <h3 class="font-display text-xl font-semibold text-white mt-1 mb-2">Next-Gen Omnichannel</h3>
+          <p class="text-slate-400 text-xs font-light mb-6">Ideal for corporate brands and multi-location franchises seeking market dominance.</p>
+          <ul class="space-y-3 text-xs text-slate-300 font-light mb-8">
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Everything in Tiers 1 & 2</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> AI Engine Search Optimization</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> CRO Heatmap Interface Audit</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> CRM Pipeline Sales Automation</li>
+            <li class="flex items-center gap-2"><span class="text-orange-400 font-bold">&bull;</span> Full Influencer Operations</li>
           </ul>
         </div>
         <div>
-          <a href="claim.html" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-bold text-xs uppercase tracking-wider text-white block">Unleash Expansion</a>
-          <span class="text-[9px] text-slate-500 text-center block mt-2 font-bold tracking-widest uppercase">🔒 MIN. 6-MONTH COMMITMENT</span>
+          <a href="claim.html" class="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-purple-600 hover:opacity-95 text-center font-semibold text-xs uppercase tracking-wider text-white block">Book Appointment</a>
+          <span class="text-[9px] text-slate-500 text-center block mt-2 font-medium tracking-widest uppercase">MIN. 6-MONTH COMMITMENT</span>
         </div>
       </div>
 
@@ -536,44 +493,51 @@
   </section>
 
   <!-- ==========================================================================
-       7. AUDIT VIDEO REQUEST FORM
+       7. APPOINTMENT BOOKING REQUEST FORM
        ========================================================================== -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
+  <section id="appointment" class="py-20 px-6 max-w-3xl mx-auto">
     <div class="glass-panel p-8 md:p-12 rounded-3xl text-center border border-white/10 shadow-2xl">
-      <span class="text-[10px] font-bold text-orange-400 tracking-widest uppercase mb-2 block">GET FREE VALUE FIRST</span>
-      <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Request Your Free 3-Min Audit Video</h2>
-      <p class="text-slate-400 text-sm max-w-xl mx-auto mb-8 font-light leading-relaxed">
-        No boring meetings or generic PDFs. We will record our screen showing your website, pointing out exact leaks and how to plug them.
+      <span class="text-[11px] font-semibold text-orange-400 tracking-widest uppercase mb-2 block">SCHEDULE A SESSION</span>
+      <h2 class="font-display text-2xl sm:text-4xl font-semibold text-white mb-3">Request Appointment Booking</h2>
+      <p class="text-slate-400 text-xs sm:text-sm max-w-md mx-auto mb-8 font-light leading-relaxed">
+        Select your preferred date & time. Our growth strategy team will review your project and connect with you directly.
       </p>
 
-      <form action="https://formspree.io/f/mqevwywd" method="POST" class="space-y-4 max-w-2xl mx-auto text-left">
+      <form action="https://formspree.io/f/mqevwywd" method="POST" class="space-y-4 max-w-xl mx-auto text-left">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">NAME</label>
+            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">YOUR NAME</label>
             <input type="text" placeholder="Alex Carter" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
           </div>
           <div>
-            <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">WORK EMAIL</label>
+            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">WORK EMAIL</label>
             <input type="email" placeholder="alex@company.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
           </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">PREFERRED DATE</label>
+            <input type="date" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+          </div>
+          <div>
+            <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">TIME SLOT</label>
+            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+              <option>10:00 AM - 11:00 AM</option>
+              <option>01:00 PM - 02:00 PM</option>
+              <option>04:00 PM - 05:00 PM</option>
+              <option>06:00 PM - 07:00 PM</option>
+            </select>
+          </div>
+        </div>
+
         <div>
-          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">WEBSITE URL</label>
+          <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">WEBSITE URL</label>
           <input type="text" placeholder="https://yourbrand.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
         </div>
 
-        <div>
-          <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Target Monthly Goal</label>
-          <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
-            <option>Manage My Brand & Social Presence</option>
-            <option>Scale Paid Meta & Google Ads</option>
-            <option>Complete Funnel & Website Redesign</option>
-          </select>
-        </div>
-
-        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 hover:opacity-95 transition-all mt-4">
-          Send Me My Personalized Audit
+        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 hover:opacity-95 transition-all mt-4">
+          Confirm Appointment Request
         </button>
       </form>
     </div>
@@ -586,31 +550,31 @@
     <div class="max-w-4xl mx-auto flex flex-col items-center">
       
       <!-- Footer Logo -->
-      <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-orange-500 via-purple-600 to-pink-500 p-[2px] mb-4">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 via-purple-600 to-pink-500 p-[2px] mb-4">
         <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-          <span class="font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-500 text-xl">E</span>
+          <span class="font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-purple-500 text-base">E</span>
         </div>
       </div>
 
-      <h3 class="font-display font-bold tracking-wider text-xl text-white mb-2">ELEVERA <span class="text-slate-400 font-normal">MEDIA TECH</span></h3>
-      <p class="text-slate-400 text-xs max-w-md mx-auto mb-8 font-light leading-relaxed">
-        Helping modern brands scale predictable, profitable revenue through cutting-edge, data-driven performance marketing architectures.
+      <h3 class="font-display font-semibold tracking-wider text-lg text-white mb-2">ELEVERA <span class="text-slate-400 font-light">MEDIA TECH</span></h3>
+      <p class="text-slate-400 text-xs max-w-sm mx-auto mb-8 font-light leading-relaxed">
+        Helping modern brands scale predictable, profitable revenue through cutting-edge performance marketing architectures.
       </p>
 
       <!-- Multi-Email Records -->
       <div class="flex flex-wrap justify-center items-center gap-3 mb-8">
-        <a href="mailto:eleveramediatech@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 text-xs font-mono hover:border-orange-500 transition-all flex items-center gap-2">
-          <span>✉</span> eleveramediatech@gmail.com
+        <a href="mailto:eleveramediatech@gmail.com" class="px-3.5 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 text-[11px] font-mono hover:border-orange-500 transition-all flex items-center gap-2">
+          <span>&bull;</span> eleveramediatech@gmail.com
         </a>
-        <a href="mailto:kotwalayush23@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-orange-400 text-xs font-mono hover:border-orange-500 transition-all flex items-center gap-2">
-          <span>✉</span> kotwalayush23@gmail.com
+        <a href="mailto:kotwalayush23@gmail.com" class="px-3.5 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-orange-400 text-[11px] font-mono hover:border-orange-500 transition-all flex items-center gap-2">
+          <span>&bull;</span> kotwalayush23@gmail.com
         </a>
-        <a href="mailto:raghavsharma8269@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 text-xs font-mono hover:border-orange-500 transition-all flex items-center gap-2">
-          <span>✉</span> raghavsharma8269@gmail.com
+        <a href="mailto:raghavsharma8269@gmail.com" class="px-3.5 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 text-[11px] font-mono hover:border-orange-500 transition-all flex items-center gap-2">
+          <span>&bull;</span> raghavsharma8269@gmail.com
         </a>
       </div>
 
-      <div class="flex gap-6 text-xs text-slate-500 mb-6">
+      <div class="flex gap-6 text-xs text-slate-500 mb-6 font-light">
         <a href="#" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
         <span>&bull;</span>
         <a href="#" class="hover:text-slate-300 transition-colors">Terms of Service</a>
@@ -618,22 +582,35 @@
         <a href="#" class="hover:text-slate-300 transition-colors">Support Channels</a>
       </div>
 
-      <p class="text-[10px] text-slate-600">&copy; 2026 Elevera Media Tech. All Rights Reserved.</p>
+      <!-- Footer Social Links -->
+      <div class="flex items-center gap-5 mb-6 text-slate-400">
+        <a href="https://www.instagram.com/eleveramediatech/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500 transition-colors" title="Instagram">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/elevera-media-tech/" target="_blank" rel="noopener noreferrer" class="hover:text-[#0A66C2] transition-colors" title="LinkedIn">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="https://youtube.com/@eleveramediatechdm?si=wHVz5KXbn4lsfSrk" target="_blank" rel="noopener noreferrer" class="hover:text-red-600 transition-colors" title="YouTube">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+
+      <p class="text-[10px] text-slate-600 font-light">&copy; 2026 Elevera Media Tech. All Rights Reserved.</p>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       9. POP-UP MODAL ($9 SOCIAL MEDIA MARKETING)
+       9. POP-UP MODAL (WEB POP UP.PNG CONNECTED)
        ========================================================================== -->
-  <div id="promo-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="relative w-full max-w-xl rounded-3xl bg-slate-950 border border-purple-500/30 p-4 text-center shadow-2xl overflow-hidden animate-modal">
+  <div id="promo-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="relative w-full max-w-lg rounded-3xl bg-slate-950 border border-purple-500/20 p-2 text-center shadow-2xl overflow-hidden animate-modal">
       
       <!-- Close Button -->
-      <button id="close-modal" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black p-2 rounded-full z-10">&times;</button>
+      <button id="close-modal" class="absolute top-4 right-4 text-white bg-black/60 hover:bg-black w-8 h-8 flex items-center justify-center rounded-full z-10 font-bold">&times;</button>
 
-      <!-- Uploaded Popup Image Link -->
-      <a href="claim.html">
-        <img src="https://placehold.co/600x650/12121A/FF5722?text=Social+Media+Marketing+%249/mo" alt="Social Media Marketing $9/month" class="w-full h-auto rounded-2xl shadow-lg transform transition hover:scale-[1.01]">
+      <!-- Connected Web Pop Up Image -->
+      <a href="#appointment">
+        <img src="web%20pop%20up.png" alt="Social Media Marketing $9/month" class="w-full h-auto rounded-2xl shadow-lg transform transition hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x650/12121A/FF5722?text=Social+Media+Marketing+%249/mo';">
       </a>
 
     </div>
@@ -657,7 +634,7 @@
       });
     }
 
-    // Dynamic Revenue Estimator Script
+    // Dynamic Revenue Estimator Script (Starts from 0)
     const trafficSlider = document.getElementById('traffic-slider');
     const crSlider = document.getElementById('cr-slider');
     const aovSlider = document.getElementById('aov-slider');
@@ -696,14 +673,13 @@
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = scrollPos / (docHeight || 1);
 
-      // Dynamically shift background gradient colors smoothly on scroll
       let bgGradient;
       if (scrollPercent < 0.3) {
-        bgGradient = 'linear-gradient(180deg, #0A0A0F 0%, #1a0b2e 50%, #2e0838 100%)';
+        bgGradient = 'linear-gradient(180deg, #050508 0%, #12081f 50%, #1f0b1a 100%)';
       } else if (scrollPercent < 0.6) {
-        bgGradient = 'linear-gradient(180deg, #1a0b2e 0%, #3b0d26 50%, #1f0524 100%)';
+        bgGradient = 'linear-gradient(180deg, #12081f 0%, #200b2e 50%, #14041a 100%)';
       } else {
-        bgGradient = 'linear-gradient(180deg, #2e0838 0%, #150926 50%, #0A0A0F 100%)';
+        bgGradient = 'linear-gradient(180deg, #200b2e 0%, #15091a 100%, #050508 100%)';
       }
       document.body.style.backgroundImage = bgGradient;
     });
@@ -714,7 +690,7 @@
     let modalShown = false;
 
     window.addEventListener('scroll', () => {
-      if (!modalShown && window.scrollY > 400 && promoModal) {
+      if (!modalShown && window.scrollY > 450 && promoModal) {
         promoModal.classList.remove('hidden');
         modalShown = true;
       }
