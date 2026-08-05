@@ -36,35 +36,55 @@
     }
   </script>
 
-:root {
-      --aurora-bg-1: #000000;
-      --aurora-bg-2: #ffb6c1;
-      --aurora-bg-3: #800080;
-    }
-    
-    body {
-      background-image: linear-gradient(180deg, var(--aurora-bg-1) 0%, var(--aurora-bg-2) 50%, var(--aurora-bg-3) 100%) !important;
-      background-attachment: fixed !important;
-      transition: background-image 0.8s ease-in-out !important;
-      min-height: 250vh !important;
-    }
-    
-    body.scrolled-theme {
-      --aurora-bg-1: #0b0f19 !important;
-      --aurora-bg-2: #d693c0 !important;
-      --aurora-bg-3: #1a1025 !important;
-    }
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: border-color 0.5s ease;
-    }
-    .aurora-card:hover {
-      border-color: var(--accent-color-1);
-    }
-    .gradient-text {
-      background: linear-gradient(92deg, var(--accent-color-1), var(--accent-color-2));
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 250vh !important;
+    background-image: linear-gradient(180deg, #000000 0%, #ffb6c1 50%, #800080 100%) !important;
+    background-attachment: fixed !important;
+    color: #F3F4F6;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .aurora-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: border-color 0.5s ease;
+  }
+  .aurora-card:hover {
+    border-color: #ffb6c1;
+  }
+  .gradient-text {
+    background: linear-gradient(92deg, #ffb6c1, #800080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>
+     /* ================= GLOBALS & RESET ================= */
+  .aurora-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: border-color 0.5s ease;
+  }
+  .aurora-card:hover {
+    border-color: var(--accent-color-1);
+  }
+  .gradient-text {
+    background: linear-gradient(92deg, var(--accent-color-1), var(--accent-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
