@@ -198,7 +198,7 @@
 
         <!-- Top Right Action Suite -->
         <div class="hidden sm:flex items-center gap-3">
-          <a href="claim.html" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-[11px] font-semibold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
+          <a href="#appointment" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-[11px] font-semibold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
             Book Appointment
           </a>
 
@@ -565,22 +565,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">YOUR NAME</label>
-            <input type="text" placeholder="Alex Carter" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+            <input type="text" name="name" placeholder="Alex Carter" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
           </div>
           <div>
             <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">WORK EMAIL</label>
-            <input type="email" placeholder="alex@company.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+            <input type="email" name="email" placeholder="alex@company.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">PREFERRED DATE</label>
-            <input type="date" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+            <input type="date" name="preferred_date" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
           </div>
           <div>
             <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">TIME SLOT</label>
-            <select class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+            <select name="time_slot" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
               <option>10:00 AM - 11:00 AM</option>
               <option>01:00 PM - 02:00 PM</option>
               <option>04:00 PM - 05:00 PM</option>
@@ -591,7 +591,7 @@
 
         <div>
           <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">WEBSITE URL</label>
-          <input type="text" placeholder="https://yourbrand.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
+          <input type="text" name="website" placeholder="https://yourbrand.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
         </div>
 
         <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 via-purple-600 to-pink-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/20 hover:opacity-95 transition-all mt-4">
@@ -666,8 +666,8 @@
       <!-- Close Button -->
       <button id="close-modal" class="absolute top-4 right-4 text-white bg-black/60 hover:bg-black w-8 h-8 flex items-center justify-center rounded-full z-10 font-bold">&times;</button>
 
-      <!-- Connected Web Pop Up Image -->
-      <a href="#appointment">
+      <!-- Connected Web Pop Up Image linked to claim.html -->
+      <a href="claim.html">
         <img src="web%20pop%20up.png" alt="Social Media Marketing $9/month" class="w-full h-auto rounded-2xl shadow-lg transform transition hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x650/12121A/FF5722?text=Social+Media+Marketing+%249/mo';">
       </a>
 
