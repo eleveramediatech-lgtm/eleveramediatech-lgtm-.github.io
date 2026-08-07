@@ -42,7 +42,7 @@
     padding: 0;
     width: 100%;
     min-height: 250vh !important;
-    background-image: linear-gradient(180deg, #050508 0%, #12081f 50%, #1f0b1a 100%) !important;
+    background-image: linear-gradient(180deg, #ec4899 0%, rgba(124, 58, 237, 0.4) 50%, #050514 100%) !important;
     background-attachment: fixed !important;
     color: #E2E8F0;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -57,16 +57,16 @@
   }
 
   .aurora-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .aurora-card:hover {
-    border-color: rgba(255, 87, 34, 0.3);
+    border-color: rgba(255, 87, 34, 0.4);
   }
 
   .gradient-text {
@@ -78,34 +78,34 @@
   /* Ambient Background Mesh Gradient */
   .bg-grid-mesh {
     background-image: 
-      radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(236, 72, 153, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.12) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(5, 5, 20, 0.9) 0px, transparent 50%);
     background-attachment: fixed;
     background-size: cover;
   }
 
   /* Glassmorphism Structural Panels */
   .glass-panel {
-    background: rgba(14, 14, 20, 0.75);
+    background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  /* Interactive Glass Cards */
+  /* Interactive Dark Glass Cards */
   .glass-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .glass-card:hover {
-    border-color: rgba(255, 87, 34, 0.3);
+    border-color: rgba(255, 87, 34, 0.4);
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(255, 87, 34, 0.1);
+    box-shadow: 0 20px 40px -15px rgba(255, 87, 34, 0.2);
   }
 
   /* Modal Animation Keyframes */
@@ -173,7 +173,7 @@
        ========================================================================== -->
   <nav class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto">
-      <div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl">
+      <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex items-center justify-between shadow-2xl">
         
         <!-- Brand Logo -->
         <a href="#" class="flex items-center gap-3 group">
@@ -197,23 +197,9 @@
         </div>
 
         <!-- Top Right Action Suite -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="#appointment" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-[11px] font-semibold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
-            Book Appointment
-          </a>
-
-          <!-- Elevera Logo Badge Avatar -->
-          <a href="EMT_2.png" target="_blank" class="w-9 h-9 rounded-full border border-white/10 overflow-hidden flex items-center justify-center bg-white/5 hover:border-orange-500/50 transition-all">
-            <img src="EMT_2.png" alt="Elevera Logo" class="w-full h-full object-cover">
-          </a>
-
-          <!-- See Work Button -->
-          <a href="our-work.html" class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-[10px] font-semibold tracking-wider text-slate-300 transition-all uppercase">
-            SEE WORK
-          </a>
-
-          <!-- Social Icon Links -->
-          <div class="flex items-center gap-1.5 pl-3 border-l border-white/10 ml-1">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Social Icons (Visible on Mobile & Desktop) -->
+          <div class="flex items-center gap-1.5 pr-1 sm:pr-3 sm:border-r border-white/10">
             <a href="https://www.instagram.com/eleveramediatech/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-white/5 hover:bg-gradient-to-tr hover:from-purple-500 hover:to-pink-500 text-slate-300 hover:text-white transition-all shadow-sm" title="Instagram">
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
@@ -224,14 +210,18 @@
               <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
           </div>
-        </div>
 
-        <!-- Mobile Drawer Trigger Button -->
-        <button class="lg:hidden text-slate-300 hover:text-white p-1" id="mobile-menu-btn" aria-label="Open Navigation Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
+          <a href="#appointment" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-purple-600 text-white text-[11px] font-semibold tracking-wider uppercase hover:opacity-95 transition-all shadow-md shadow-orange-500/20">
+            Book Appointment
+          </a>
+
+          <!-- Mobile Drawer Trigger Button -->
+          <button class="lg:hidden text-slate-300 hover:text-white p-1" id="mobile-menu-btn" aria-label="Open Navigation Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
 
       </div>
     </div>
@@ -581,10 +571,10 @@
           <div>
             <label class="block text-[10px] uppercase font-semibold text-slate-400 mb-1 tracking-wider">TIME SLOT</label>
             <select name="time_slot" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-slate-200 text-xs focus:outline-none focus:border-orange-500 transition-colors">
-              <option>10:00 AM - 11:00 AM</option>
-              <option>01:00 PM - 02:00 PM</option>
-              <option>04:00 PM - 05:00 PM</option>
-              <option>06:00 PM - 07:00 PM</option>
+              <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+              <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+              <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+              <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
             </select>
           </div>
         </div>
@@ -658,7 +648,7 @@
   </footer>
 
   <!-- ==========================================================================
-       9. POP-UP MODAL (WEB POP UP.PNG CONNECTED)
+       9. POP-UP MODAL (WEB POP UP.PNG CONNECTED TO claim.html)
        ========================================================================== -->
   <div id="promo-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
     <div class="relative w-full max-w-lg rounded-3xl bg-slate-950 border border-purple-500/20 p-2 text-center shadow-2xl overflow-hidden animate-modal">
@@ -725,19 +715,19 @@
       aovSlider.addEventListener('input', calculateROI);
     }
 
-    // Scroll-Triggered Dynamic Color Transition Effects
+    // Scroll-Triggered Color Transition Effects (1: Pink top/down, 2: Light Transparent Purple middle, 3: Dark Black Blue at end)
     window.addEventListener('scroll', () => {
       const scrollPos = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = scrollPos / (docHeight || 1);
 
       let bgGradient;
-      if (scrollPercent < 0.3) {
-        bgGradient = 'linear-gradient(180deg, #050508 0%, #12081f 50%, #1f0b1a 100%)';
-      } else if (scrollPercent < 0.6) {
-        bgGradient = 'linear-gradient(180deg, #12081f 0%, #200b2e 50%, #14041a 100%)';
+      if (scrollPercent < 0.35) {
+        bgGradient = 'linear-gradient(180deg, #ec4899 0%, #be185d 50%, #ec4899 100%)';
+      } else if (scrollPercent < 0.7) {
+        bgGradient = 'linear-gradient(180deg, #ec4899 0%, rgba(124, 58, 237, 0.35) 50%, #7c3aed 100%)';
       } else {
-        bgGradient = 'linear-gradient(180deg, #200b2e 0%, #15091a 100%, #050508 100%)';
+        bgGradient = 'linear-gradient(180deg, #7c3aed 0%, #1e1b4b 50%, #030712 100%)';
       }
       document.body.style.backgroundImage = bgGradient;
     });
