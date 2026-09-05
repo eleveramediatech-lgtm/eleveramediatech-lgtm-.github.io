@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELEVERA — Digital Growth Agency | Build Digital Presence That Gets Noticed</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#070709',
+                            card: '#0e0f13',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            borderHover: 'rgba(255, 255, 255, 0.22)',
+                            accent: '#6366f1',
+                            cyan: '#22d3ee',
+                            emerald: '#10b981',
+                            light: '#f3f4f6',
+                            muted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <!-- Libraries: GSAP, ScrollTrigger, Lenis Smooth Scroll, Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --cyan-glow: rgba(34, 211, 238, 0.12);
+        }
+
+        body {
+            background-color: #070709;
+            color: #f3f4f6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            selection-background-color: #6366f1;
+            selection-color: #ffffff;
+        }
+
+        ::selection {
+            background: #6366f1;
+            color: #ffffff;
+        }
+
+        /* Subtle Noise Overlay */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel {
+            background: rgba(14, 15, 19, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(7, 7, 9, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Spotlight Cursor Glow */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.09) 0%, rgba(34, 211, 238, 0.04) 45%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Text gradient styles */
+        .text-gradient-metallic {
+            background: linear-gradient(135deg, #ffffff 0%, #d1d5db 50%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-accent {
+            background: linear-gradient(135deg, #ffffff 30%, #818cf8 70%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Infinite horizontal marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Word reveal masking */
+        .word-reveal {
+            opacity: 0.15;
+            transition: opacity 0.4s ease, color 0.4s ease, transform 0.4s ease;
+        }
+        .word-reveal.active {
+            opacity: 1;
+            color: #ffffff;
+        }
+
+        /* Team Card Image Frame Effect */
+        .team-avatar-frame {
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.25), rgba(14, 15, 19, 0.9));
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-gray-100 antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Noise Texture Overlay -->
+    <div class="fixed inset-0 bg-noise pointer-events-none z-50"></div>
+
+    <!-- Mouse Spotlight Effect -->
+    <div id="cursor-glow" class="hidden md:block pointer-events-none"></div>
+
+    <div id="page-loader" class="fixed inset-0 z-[100] bg-brand-black flex flex-col justify-between p-8 md:p-12">
+        <div class="flex justify-between items-center">
+            <span class="font-bold tracking-widest text-xl text-white">ELEVERA</span>
+            <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">// DIGITAL GROWTH AGENCY</span>
+        </div>
+        <div class="max-w-2xl my-auto">
+            <h2 class="text-xs font-mono text-brand-cyan uppercase tracking-widest mb-4">// INITIALIZING AGENCY PORTAL</h2>
+            <p class="text-2xl md:text-4xl font-light tracking-tight text-gray-200 leading-snug">
+                WE BUILD DIGITAL PRESENCE THAT GETS NOTICED.
+            </p>
+        </div>
+        <div class="w-full">
+            <div class="flex justify-between items-center text-xs font-mono text-gray-500 mb-2">
+                <span>LOADING ASSETS & SYSTEM MODULES</span>
+                <span id="loader-counter">00%</span>
+            </div>
+            <div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
+                <div id="loader-bar" class="h-full bg-gradient-to-r from-brand-accent via-brand-cyan to-brand-emerald w-0 transition-all ease-out duration-300"></div>
+            </div>
+        </div>
+    </div>
+
+    <header id="main-nav" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-6 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="group flex items-center gap-2 text-xl font-extrabold tracking-widest text-white uppercase">
+                <span>ELEVERA</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-accent group-hover:scale-150 group-hover:bg-brand-cyan transition-all duration-300"></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 rounded-full px-7 py-2.5 border border-white/10 bg-white/[0.02] backdrop-blur-md">
+                <a href="#about" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="#services" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="#why-us" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">Why Us</a>
+                <a href="#team" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">Leadership</a>
+                <a href="#philosophy" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">Philosophy</a>
+                <a href="#approach" class="text-xs font-medium uppercase tracking-wider text-gray-300 hover:text-white transition-colors">Approach</a>
+            </nav>
+
+            <!-- CTA & Mobile Trigger -->
+            <div class="flex items-center gap-4">
+                <button onclick="openContactModal()" class="relative group overflow-hidden rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-white transition-all duration-300 hover:border-brand-accent hover:bg-brand-accent/20">
+                    <span class="relative z-10 flex items-center gap-2">
+                        LET'S TALK
+                        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                    </span>
+                    <span class="absolute inset-0 bg-gradient-to-r from-brand-accent/30 to-brand-cyan/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </button>
+
+                <!-- Mobile Trigger -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-white focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-nav-overlay" class="fixed inset-0 bg-brand-black/95 backdrop-blur-2xl z-50 flex flex-col justify-between p-8 translate-x-full transition-transform duration-500 md:hidden">
+            <div class="flex justify-between items-center">
+                <span class="font-bold tracking-widest text-xl text-white">ELEVERA</span>
+                <button id="close-mobile-nav" class="p-2 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6 my-auto text-2xl font-light">
+                <a href="#about" class="mobile-nav-link hover:text-brand-accent transition-colors">01. About Us</a>
+                <a href="#services" class="mobile-nav-link hover:text-brand-accent transition-colors">02. Services</a>
+                <a href="#why-us" class="mobile-nav-link hover:text-brand-accent transition-colors">03. Why Us</a>
+                <a href="#team" class="mobile-nav-link hover:text-brand-accent transition-colors">04. Leadership</a>
+                <a href="#philosophy" class="mobile-nav-link hover:text-brand-accent transition-colors">05. Philosophy</a>
+                <a href="#approach" class="mobile-nav-link hover:text-brand-accent transition-colors">06. Approach</a>
+            </nav>
+            <button onclick="openContactModal(); closeMobileMenu();" class="w-full py-4 text-center rounded-full bg-brand-accent text-white font-medium uppercase tracking-wider text-sm">
+                LET'S TALK →
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN WRAPPER -->
+    <main>
+        <section id="hero" class="relative min-h-screen flex flex-col justify-between pt-32 pb-16 px-6 md:px-12 overflow-hidden">
+            <!-- Three.js Canvas Visual Element -->
+            <div class="absolute inset-0 -z-10 pointer-events-none opacity-60">
+                <canvas id="hero-canvas" class="w-full h-full"></canvas>
+            </div>
+
+            <!-- Soft Radial Ambient Glows -->
+            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-accent/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+            <div class="absolute bottom-10 -right-20 w-96 h-96 bg-brand-cyan/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+            <!-- Top Kicker Tag -->
+            <div class="max-w-7xl mx-auto w-full pt-4">
+                <div class="hero-anim inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+                    <span class="text-xs font-mono text-gray-300 uppercase tracking-widest">ABOUT ELEVERA / DIGITAL GROWTH AGENCY</span>
+                </div>
+            </div>
+
+            <!-- Hero Headline & Core Messaging -->
+            <div class="max-w-7xl mx-auto w-full my-auto py-12">
+                <h1 class="hero-anim text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter uppercase leading-[0.92] text-gradient-metallic mb-8">
+                    WE BUILD DIGITAL<br>
+                    <span class="text-gradient-accent">PRESENCE THAT</span><br>
+                    GETS NOTICED.
+                </h1>
+
+                <p class="hero-anim max-w-2xl text-base md:text-xl text-gray-300 font-light leading-relaxed mb-10">
+                    Elevera Digital Marketing is a modern digital growth agency focused on helping ambitious businesses build a stronger online presence, connect with the right audience, and create real business opportunities.
+                </p>
+
+                <!-- Action CTAs -->
+                <div class="hero-anim flex flex-wrap items-center gap-4">
+                    <a href="#about" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-widest hover:bg-gray-200 transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]">
+                        <span>EXPLORE ELEVERA</span>
+                        <span class="group-hover:translate-y-1 transition-transform duration-300">↓</span>
+                    </a>
+                    <button onclick="openContactModal()" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 bg-white/[0.03] text-white font-medium text-xs uppercase tracking-widest backdrop-blur-md hover:border-brand-cyan hover:bg-brand-cyan/10 transition-all duration-300">
+                        <span>LET'S WORK TOGETHER</span>
+                        <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Metrics Bar -->
+            <div class="max-w-7xl mx-auto w-full border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div>
+                    <span class="block text-2xl md:text-3xl font-bold font-mono text-white">100%</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider">Strategy + Execution</span>
+                </div>
+                <div>
+                    <span class="block text-2xl md:text-3xl font-bold font-mono text-white">6+</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider">Core Growth Levers</span>
+                </div>
+                <div>
+                    <span class="block text-2xl md:text-3xl font-bold font-mono text-white">Targeted</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider">Audience Alignment</span>
+                </div>
+                <div>
+                    <span class="block text-2xl md:text-3xl font-bold font-mono text-white">Purpose</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider">Driven Digital Growth</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-28 px-6 md:px-12 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="text-xs font-mono text-brand-accent tracking-widest uppercase">[ 01 / THE IDEA ]</span>
+                    <div class="h-[1px] w-12 bg-brand-accent/30"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-7">
+                        <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight uppercase leading-none text-white mb-8">
+                            MORE THAN MARKETING.<br>
+                            <span class="text-gray-500">YOUR DIGITAL GROWTH PARTNER.</span>
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-5 space-y-6 text-gray-300 text-lg md:text-xl font-light leading-relaxed">
+                        <p class="gsap-line-reveal">
+                            At Elevera, we believe your digital presence should do more than simply exist — it should actively work for your business.
+                        </p>
+                        <p class="gsap-line-reveal">
+                            From direct marketing and social media management to search engine optimization, business listings, content strategy, and digital growth solutions, we combine strategy, creativity, and execution to help brands compete and win in an increasingly digital world.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="interactive-statement" class="py-32 px-6 md:px-12 bg-white/[0.01] border-y border-white/5 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-accent/5 via-transparent to-brand-cyan/5 pointer-events-none"></div>
+            
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-8">// CORE CREED</p>
+                <h2 id="statement-text" class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.95]">
+                    <span class="word-reveal block">YOUR BRAND</span>
+                    <span class="word-reveal block text-brand-accent">DESERVES MORE</span>
+                    <span class="word-reveal block">THAN VISIBILITY.</span>
+                </h2>
+            </div>
+        </section>
+
+        <section id="services" class="py-32 px-6 md:px-12 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                    <div>
+                        <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-3">[ 02 / WHAT WE DO ]</span>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tight uppercase text-white">
+                            THE DIGITAL<br><span class="text-gradient-accent">GROWTH STACK.</span>
+                        </h2>
+                    </div>
+                    <p class="max-w-md text-gray-400 text-sm md:text-base font-light">
+                        Integrated solutions engineered to build brand equity, capture high-intent audiences, and convert online attention into tangible business results.
+                    </p>
+                </div>
+
+                <!-- 6 Service Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 01 DM MARKETING -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-accent/50 hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-accent/10 rounded-full blur-3xl group-hover:bg-brand-accent/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-accent transition-colors">01 / OUTREACH</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-accent group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">DM MARKETING</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Start conversations. Create opportunities.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                Strategic and personalized direct messaging designed to connect businesses directly with potential customers, create meaningful conversations, and unlock high-value opportunities.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>DIRECT OUTREACH</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                    <!-- 02 SEO -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-cyan/50 hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-cyan/10 rounded-full blur-3xl group-hover:bg-brand-cyan/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-cyan transition-colors">02 / VISIBILITY</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-cyan group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">SEO</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Be discovered when it matters.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                Search engine optimization strategies crafted to improve online discoverability, elevate search rankings, and attract organic traffic that is actively searching for your business.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>SEARCH OPTIMIZATION</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                    <!-- 03 SOCIAL MEDIA MANAGEMENT -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-accent/50 hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-accent/10 rounded-full blur-3xl group-hover:bg-brand-accent/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-accent transition-colors">03 / BRANDING</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-accent group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">SOCIAL MEDIA MANAGEMENT</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Turn your social presence into a brand asset.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                End-to-end social media management focused on consistent branding, engaging content, organic audience growth, and establishing a commanding online presence.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>SMM & COMMUNITY</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                    <!-- 04 BUSINESS LISTINGS -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-emerald/50 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-emerald/10 rounded-full blur-3xl group-hover:bg-brand-emerald/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-emerald transition-colors">04 / DISCOVERY</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-emerald group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">BUSINESS LISTINGS</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Make your business easier to find.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                Strategic optimization and synchronization of business listings across key digital platforms and directories to elevate local visibility and ensure customer discovery.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>LOCAL LISTINGS</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                    <!-- 05 CONTENT & DIGITAL STRATEGY -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-accent/50 hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-accent/10 rounded-full blur-3xl group-hover:bg-brand-accent/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-accent transition-colors">05 / BLUEPRINT</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-accent group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">CONTENT & DIGITAL STRATEGY</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Every action needs a clear direction.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                Creative content planning and strategic direction designed to articulate your brand voice clearly, engage target demographics, and maintain brand momentum.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>STRATEGY & MAPPING</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                    <!-- 06 DIGITAL GROWTH SOLUTIONS -->
+                    <div class="service-card group glass-panel p-8 md:p-10 rounded-3xl relative overflow-hidden transition-all duration-500 hover:border-brand-cyan/50 hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] flex flex-col justify-between min-h-[380px]">
+                        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-brand-cyan/10 rounded-full blur-3xl group-hover:bg-brand-cyan/25 transition-all duration-500"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="font-mono text-xs text-gray-500 group-hover:text-brand-cyan transition-colors">06 / SCALING</span>
+                                <span class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-xs text-gray-400 group-hover:border-brand-cyan group-hover:text-white transition-all group-hover:rotate-45">↗</span>
+                            </div>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight text-white mb-3">DIGITAL GROWTH SOLUTIONS</h3>
+                            <p class="text-xs font-mono text-brand-cyan mb-4">“Customized marketing built for scale.”</p>
+                            <p class="text-gray-400 text-sm leading-relaxed font-light">
+                                Bespoke growth frameworks built around your unique business ecosystem, target audience, industry dynamics, and aggressive expansion objectives.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span>GROWTH ARCHITECTURE</span>
+                            <span class="group-hover:text-white transition-colors">INQUIRE →</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us" class="py-32 px-6 md:px-12 border-t border-white/5 bg-white/[0.005]">
+            <div class="max-w-7xl mx-auto">
+                <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-4">[ 03 / WHY ELEVERA ]</span>
+                
+                <h2 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight uppercase leading-[0.95] text-white mb-8">
+                    BECAUSE BEING ONLINE IS EASY.<br>
+                    <span class="text-gradient-accent">BEING REMEMBERED IS DIFFERENT.</span>
+                </h2>
+
+                <p class="max-w-3xl text-gray-400 text-lg font-light mb-16 leading-relaxed">
+                    At Elevera, we focus on the crucial details that influence how people discover, perceive, and trust your business — combining strategy + creativity + consistency.
+                </p>
+
+                <!-- Vertical Storytelling Sticky Sidebar Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 hidden lg:block sticky top-36 h-[400px] rounded-3xl glass-panel p-8 flex flex-col justify-between overflow-hidden border border-white/10">
+                        <div class="space-y-4">
+                            <span class="text-xs font-mono text-brand-cyan">// ELEVERA FOCUS PILLARS</span>
+                            <h3 id="active-pillar-title" class="text-3xl font-bold text-white uppercase">01 — VISIBILITY</h3>
+                            <p id="active-pillar-desc" class="text-gray-300 text-sm leading-relaxed font-light">
+                                Help your brand appear where potential customers are already searching and spending their time.
+                            </p>
+                        </div>
+                        <div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                            <div id="pillar-progress-bar" class="bg-brand-accent h-full w-1/4 transition-all duration-500"></div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-8">
+                        <!-- Pillar 01 -->
+                        <div class="why-item glass-panel p-8 md:p-12 rounded-3xl border border-white/10 transition-all duration-500 group" data-index="1" data-title="01 — VISIBILITY" data-desc="Help your brand appear where potential customers are already searching and spending their time through search optimization and targeted outreach.">
+                            <span class="text-sm font-mono text-brand-accent mb-2 block">01 / DISCOVERY</span>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white uppercase mb-4 group-hover:text-brand-accent transition-colors">VISIBILITY</h3>
+                            <p class="text-gray-400 text-base font-light leading-relaxed">
+                                Help your brand appear where potential customers are already searching and spending their time. Ensure high-intent discoverability across digital touchpoints.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 02 -->
+                        <div class="why-item glass-panel p-8 md:p-12 rounded-3xl border border-white/10 transition-all duration-500 group opacity-50" data-index="2" data-title="02 — CONNECTION" data-desc="Reach and engage with the right audience through strategic communication, personalized direct messaging, and social media.">
+                            <span class="text-sm font-mono text-brand-cyan mb-2 block">02 / ENGAGEMENT</span>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white uppercase mb-4 group-hover:text-brand-cyan transition-colors">CONNECTION</h3>
+                            <p class="text-gray-400 text-base font-light leading-relaxed">
+                                Reach and engage with the right audience through strategic communication, personalized outreach, and meaningful social media interactions.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 03 -->
+                        <div class="why-item glass-panel p-8 md:p-12 rounded-3xl border border-white/10 transition-all duration-500 group opacity-50" data-index="3" data-title="03 — CREDIBILITY" data-desc="Build a professional and consistent digital presence that makes your business easier to trust and choose.">
+                            <span class="text-sm font-mono text-brand-emerald mb-2 block">03 / TRUST</span>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white uppercase mb-4 group-hover:text-brand-emerald transition-colors">CREDIBILITY</h3>
+                            <p class="text-gray-400 text-base font-light leading-relaxed">
+                                Build a professional and consistent digital presence that makes your business easier to trust, stand out, and choose over competitors.
+                            </p>
+                        </div>
+
+                        <!-- Pillar 04 -->
+                        <div class="why-item glass-panel p-8 md:p-12 rounded-3xl border border-white/10 transition-all duration-500 group opacity-50" data-index="4" data-title="04 — GROWTH" data-desc="Turn digital attention into meaningful opportunities through smarter, purpose-driven marketing strategies.">
+                            <span class="text-sm font-mono text-brand-accent mb-2 block">04 / IMPACT</span>
+                            <h3 class="text-2xl md:text-4xl font-bold text-white uppercase mb-4 group-hover:text-brand-accent transition-colors">GROWTH</h3>
+                            <p class="text-gray-400 text-base font-light leading-relaxed">
+                                Turn digital attention into meaningful opportunities, qualified inquiries, and scalable expansion through smarter marketing strategies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="py-32 px-6 md:px-12 border-t border-white/5 relative bg-white/[0.002]">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                    <div>
+                        <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-3">[ 04 / THE PEOPLE BEHIND ELEVERA ]</span>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tight uppercase text-white">
+                            BUILT BY VISION.<br><span class="text-gradient-accent">DRIVEN BY EXECUTION.</span>
+                        </h2>
+                    </div>
+                    <p class="max-w-md text-gray-400 text-sm md:text-base font-light">
+                        Elevera is founded on the belief that great digital growth comes from combining forward-thinking creative strategy with practical, relentless execution.
+                    </p>
+                </div>
+
+                <!-- Team Leadership Profiles Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Profile Card 1: Ayush Kotwal -->
+                    <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-brand-accent/50 transition-all duration-500">
+                        <div class="absolute top-0 right-0 w-60 h-60 bg-brand-accent/10 rounded-full blur-3xl group-hover:bg-brand-accent/20 transition-all duration-500"></div>
+                        
+                        <div class="flex items-center gap-6 mb-8">
+                            <div class="w-20 h-20 rounded-2xl team-avatar-frame border border-white/15 flex items-center justify-center font-extrabold text-2xl text-brand-accent font-mono shadow-inner">
+                                AK
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-brand-cyan uppercase tracking-widest block mb-1">FOUNDER</span>
+                                <h3 class="text-2xl md:text-3xl font-extrabold uppercase text-white tracking-tight">AYUSH KOTWAL</h3>
+                                <p class="text-xs font-mono text-gray-400 mt-1">Vision, Strategy & Direction</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-300 text-base font-light leading-relaxed mb-6">
+                            Ayush Kotwal is the Founder of Elevera Digital Marketing, driving the brand's vision, strategy, and overall direction. With a dedicated focus on digital marketing, brand growth, and creating real business opportunities through online platforms, Ayush leads Elevera with a forward-thinking approach focused on building strong and impactful digital presences for ambitious businesses.
+                        </p>
+
+                        <div class="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-500">
+                            <span>STRATEGIC LEADERSHIP</span>
+                            <span class="text-brand-accent">ELEVERA DIGITAL</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Card 2: Raghav Sharma -->
+                    <div class="glass-panel p-8 md:p-12 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-brand-cyan/50 transition-all duration-500">
+                        <div class="absolute top-0 right-0 w-60 h-60 bg-brand-cyan/10 rounded-full blur-3xl group-hover:bg-brand-cyan/20 transition-all duration-500"></div>
+                        
+                        <div class="flex items-center gap-6 mb-8">
+                            <div class="w-20 h-20 rounded-2xl team-avatar-frame border border-white/15 flex items-center justify-center font-extrabold text-2xl text-brand-cyan font-mono shadow-inner">
+                                RS
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-brand-cyan uppercase tracking-widest block mb-1">CO-FOUNDER</span>
+                                <h3 class="text-2xl md:text-3xl font-extrabold uppercase text-white tracking-tight">RAGHAV SHARMA</h3>
+                                <p class="text-xs font-mono text-gray-400 mt-1">Growth, Operations & Execution</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-300 text-base font-light leading-relaxed mb-6">
+                            Raghav Sharma is the Co-Founder of Elevera Digital Marketing, contributing to the company's growth, operational strategy, and execution. His role focuses on turning ambitious ideas into practical digital solutions while helping Elevera develop strategies that create stronger, enduring connections between brands and their target audiences.
+                        </p>
+
+                        <div class="pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-500">
+                            <span>EXECUTION & SOLUTIONS</span>
+                            <span class="text-brand-cyan">ELEVERA DIGITAL</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="visual-transition" class="relative py-32 overflow-hidden flex items-center justify-center min-h-[65vh] border-y border-white/5">
+            <div class="absolute inset-0 -z-10">
+                <canvas id="orb-canvas" class="w-full h-full"></canvas>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-6 text-center z-10 pointer-events-none">
+                <span class="inline-block text-xs font-mono text-brand-cyan tracking-widest uppercase mb-4 border border-brand-cyan/30 px-4 py-1.5 rounded-full backdrop-blur-md">
+                    DIGITAL PRESENCE ARCHITECTURE
+                </span>
+                <h3 class="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl">
+                    PRECISION STRATEGY MEETS<br>UNAPOLOGETIC CREATIVITY.
+                </h3>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-32 px-6 md:px-12 border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto">
+                <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-4">[ 05 / OUR PHILOSOPHY ]</span>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+                    <div class="lg:col-span-6">
+                        <h2 class="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight text-white leading-none">
+                            THINK SMART.<br>
+                            CREATE BETTER.<br>
+                            <span class="text-gradient-accent">GROW FURTHER.</span>
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-6 glass-panel p-8 md:p-10 rounded-3xl border border-white/10 space-y-4">
+                        <p class="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+                            We don't believe in one-size-fits-all marketing. Every business has a different audience, different goals, and unique growth challenges.
+                        </p>
+                        <p class="text-sm md:text-base text-gray-400 font-light leading-relaxed">
+                            That's why our approach always starts with understanding the brand, audience, and market opportunities — then building a bespoke digital strategy around them.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Why Businesses Choose Elevera Grid -->
+                <h3 class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-8">// WHY BUSINESSES CHOOSE ELEVERA</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-brand-accent/40 transition-colors">
+                        <span class="text-xs font-mono text-brand-accent block mb-2">01 / STRATEGY</span>
+                        <h4 class="text-lg font-bold uppercase text-white mb-2">Strategic Thinking</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed font-light">
+                            We focus on the bigger picture and long-term brand equity, not just isolated marketing tasks.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-brand-cyan/40 transition-colors">
+                        <span class="text-xs font-mono text-brand-cyan block mb-2">02 / CREATIVITY</span>
+                        <h4 class="text-lg font-bold uppercase text-white mb-2">Creative Execution</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed font-light">
+                            We turn complex strategies into compelling content, campaigns, and digital experiences that capture attention.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-brand-emerald/40 transition-colors">
+                        <span class="text-xs font-mono text-brand-emerald block mb-2">03 / CONTINUITY</span>
+                        <h4 class="text-lg font-bold uppercase text-white mb-2">Consistent Growth</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed font-light">
+                            Digital growth is an ongoing process. We focus on building a resilient foundation for sustainable results.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-brand-accent/40 transition-colors">
+                        <span class="text-xs font-mono text-brand-accent block mb-2">04 / PURPOSE</span>
+                        <h4 class="text-lg font-bold uppercase text-white mb-2">Business-Focused</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed font-light">
+                            Every single activity has a purpose — from search visibility and engagement to customer acquisition and growth.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="mission-vision" class="py-32 px-6 md:px-12 relative">
+            <div class="max-w-7xl mx-auto space-y-32">
+                
+                <!-- Mission Block -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5">
+                        <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-4">[ 06 / OUR MISSION ]</span>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-none">
+                            MAKE DIGITAL MARKETING<br>
+                            <span class="text-gradient-accent">MORE MEANINGFUL.</span>
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-7 glass-panel p-8 md:p-12 rounded-3xl border border-white/10">
+                        <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed">
+                            “Our mission is to help businesses turn their digital presence into a valuable business asset.
+                            <br><br>
+                            We aim to make professional digital marketing more strategic, accessible, and results-focused — giving businesses the tools and direction they need to grow in the digital era.”
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vision Block -->
+                <div class="relative p-10 md:p-20 rounded-3xl bg-gradient-to-br from-white/[0.03] to-brand-accent/10 border border-white/15 overflow-hidden text-center md:text-left">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+                    
+                    <span class="text-xs font-mono text-brand-cyan tracking-widest uppercase block mb-6">// OUR VISION</span>
+                    
+                    <h3 class="text-2xl sm:text-4xl md:text-5xl font-light text-gray-400 uppercase tracking-tight mb-6">
+                        WE ENVISION A DIGITAL LANDSCAPE WHERE BUSINESSES DON'T SIMPLY COMPETE FOR ATTENTION.
+                    </h3>
+                    
+                    <h2 class="text-4xl sm:text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none text-gradient-metallic">
+                        THEY EARN IT.<br>
+                        <span class="text-gradient-accent">BUILD BRANDS THAT STAND OUT.</span>
+                    </h2>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="approach" class="py-32 px-6 md:px-12 border-t border-white/5 relative bg-white/[0.003]">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                    <div>
+                        <span class="text-xs font-mono text-brand-accent tracking-widest uppercase block mb-3">[ 07 / THE ELEVERA APPROACH ]</span>
+                        <h2 class="text-4xl md:text-7xl font-extrabold tracking-tight uppercase text-white">
+                            THE ROADMAP TO<br><span class="text-gradient-accent">DIGITAL LEADERSHIP.</span>
+                        </h2>
+                    </div>
+                    <span class="text-xs font-mono text-gray-500 mt-4 md:mt-0">// 5-PHASE EXECUTION SYSTEM</span>
+                </div>
+
+                <!-- Interactive Step Selector Tabs -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-12">
+                    <button onclick="setApproachStep(1)" class="approach-tab active glass-panel p-4 rounded-2xl text-left border border-brand-accent transition-all duration-300" data-step="1">
+                        <span class="text-xs font-mono text-brand-accent block mb-1">01</span>
+                        <span class="text-xs font-bold uppercase text-white tracking-wider">DISCOVER</span>
+                    </button>
+                    <button onclick="setApproachStep(2)" class="approach-tab glass-panel p-4 rounded-2xl text-left border border-white/10 opacity-60 hover:opacity-100 transition-all duration-300" data-step="2">
+                        <span class="text-xs font-mono text-brand-cyan block mb-1">02</span>
+                        <span class="text-xs font-bold uppercase text-white tracking-wider">STRATEGIZE</span>
+                    </button>
+                    <button onclick="setApproachStep(3)" class="approach-tab glass-panel p-4 rounded-2xl text-left border border-white/10 opacity-60 hover:opacity-100 transition-all duration-300" data-step="3">
+                        <span class="text-xs font-mono text-brand-emerald block mb-1">03</span>
+                        <span class="text-xs font-bold uppercase text-white tracking-wider">EXECUTE</span>
+                    </button>
+                    <button onclick="setApproachStep(4)" class="approach-tab glass-panel p-4 rounded-2xl text-left border border-white/10 opacity-60 hover:opacity-100 transition-all duration-300" data-step="4">
+                        <span class="text-xs font-mono text-brand-accent block mb-1">04</span>
+                        <span class="text-xs font-bold uppercase text-white tracking-wider">OPTIMIZE</span>
+                    </button>
+                    <button onclick="setApproachStep(5)" class="approach-tab glass-panel p-4 rounded-2xl text-left border border-white/10 opacity-60 hover:opacity-100 transition-all duration-300" data-step="5">
+                        <span class="text-xs font-mono text-brand-cyan block mb-1">05</span>
+                        <span class="text-xs font-bold uppercase text-white tracking-wider">GROW</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Step Content Box -->
+                <div class="glass-panel rounded-3xl p-8 md:p-16 border border-white/10 relative overflow-hidden min-h-[360px] flex flex-col justify-between">
+                    <div id="approach-content-box">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span id="approach-number" class="text-6xl md:text-8xl font-black font-mono text-brand-accent/20">01</span>
+                            <div>
+                                <span class="text-xs font-mono text-brand-accent uppercase block tracking-widest">PHASE 01</span>
+                                <h3 id="approach-title" class="text-3xl md:text-5xl font-extrabold uppercase text-white tracking-tight">DISCOVER</h3>
+                            </div>
+                        </div>
+                        <p id="approach-body" class="text-lg md:text-2xl text-gray-300 font-light max-w-3xl leading-relaxed">
+                            Understand the business, target audience personas, competitive positioning, and baseline digital presence to uncover untapped growth levers.
+                        </p>
+                    </div>
+
+                    <!-- Rail Controls -->
+                    <div class="mt-12 pt-8 border-t border-white/10 flex items-center justify-between">
+                        <span id="approach-count-indicator" class="text-xs font-mono text-gray-500">PHASE 1 OF 5</span>
+                        <div class="flex items-center gap-3">
+                            <button onclick="prevApproachStep()" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">←</button>
+                            <button onclick="nextApproachStep()" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 overflow-hidden border-t border-white/5 relative bg-white/[0.005]">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16">
+                <h2 class="text-4xl md:text-7xl font-extrabold tracking-tight uppercase text-white mb-6">
+                    BUILT FOR<br><span class="text-gradient-accent">AMBITION.</span>
+                </h2>
+                <p class="max-w-2xl text-lg md:text-xl text-gray-400 font-light leading-relaxed">
+                    Whether you're a startup building its first digital presence, a growing brand looking for more visibility, or an established business ready to strengthen its online strategy, Elevera is built to help you move forward.
+                </p>
+            </div>
+
+            <!-- Infinite Marquee Bar -->
+            <div class="relative py-8 border-y border-white/10 bg-white/[0.02]">
+                <div class="animate-marquee flex items-center whitespace-nowrap gap-12 text-3xl md:text-6xl font-extrabold uppercase tracking-tighter text-white/80">
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-accent"></span> STARTUPS</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-cyan"></span> GROWING BRANDS</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-emerald"></span> ESTABLISHED BUSINESSES</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-accent"></span> AMBITIOUS FOUNDERS</span>
+                    
+                    <!-- Loop duplicate -->
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-accent"></span> STARTUPS</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-cyan"></span> GROWING BRANDS</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-emerald"></span> ESTABLISHED BUSINESSES</span>
+                    <span class="flex items-center gap-6"><span class="w-3 h-3 rounded-full bg-brand-accent"></span> AMBITIOUS FOUNDERS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="min-h-screen py-32 px-6 md:px-12 relative flex flex-col justify-between border-t border-white/10 overflow-hidden">
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-t from-brand-accent/20 via-brand-cyan/10 to-transparent blur-[160px] pointer-events-none -z-10"></div>
+
+            <div class="max-w-7xl mx-auto w-full my-auto text-center md:text-left">
+                <span class="text-xs font-mono text-brand-cyan tracking-widest uppercase block mb-6">// LET'S BUILD SOMETHING THAT GETS NOTICED</span>
+                
+                <h2 class="text-3xl sm:text-5xl md:text-7xl font-light text-gray-300 uppercase tracking-tight mb-4">
+                    YOUR BUSINESS ALREADY HAS A STORY.
+                </h2>
+                
+                <h2 class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-[0.9] text-gradient-accent mb-12">
+                    LET'S MAKE SURE THE RIGHT PEOPLE SEE IT.
+                </h2>
+
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-6">
+                    <button onclick="openContactModal()" class="group relative overflow-hidden rounded-full bg-white text-black px-10 py-5 text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]">
+                        <span class="relative z-10 flex items-center gap-3">
+                            LET'S GROW
+                            <span class="group-hover:translate-x-2 transition-transform duration-300">→</span>
+                        </span>
+                    </button>
+
+                    <button onclick="openContactModal()" class="group inline-flex items-center gap-3 px-10 py-5 rounded-full border border-white/20 bg-white/5 text-white font-medium text-xs uppercase tracking-widest hover:border-brand-accent hover:bg-brand-accent/20 transition-all duration-300">
+                        <span>START A CONVERSATION</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bounce Indicator -->
+            <div class="max-w-7xl mx-auto w-full text-center mt-12">
+                <span class="inline-block text-xs font-mono text-gray-500 uppercase tracking-widest animate-bounce">
+                    ↓ BUILD YOUR PRESENCE. CREATE YOUR IMPACT. ELEVATE YOUR BRAND.
+                </span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black/90 border-t border-white/10 py-16 px-6 md:px-12 text-gray-400">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <!-- Col 1: Brand Info -->
+                <div class="md:col-span-5 space-y-4">
+                    <a href="#" class="text-2xl font-extrabold tracking-widest text-white uppercase block">
+                        ELEVERA<span class="text-brand-accent">.</span>
+                    </a>
+                    <p class="text-sm font-light text-gray-400 max-w-sm leading-relaxed">
+                        BUILD YOUR PRESENCE. CREATE YOUR IMPACT. ELEVATE YOUR BRAND.
+                    </p>
+                    <p class="text-xs font-mono text-brand-cyan">
+                        ELEVERA DIGITAL MARKETING AGENCY
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="md:col-span-4 space-y-3">
+                    <span class="text-xs font-mono text-white uppercase tracking-wider block mb-2">// CORE SERVICES</span>
+                    <ul class="space-y-2 text-xs font-mono text-gray-400">
+                        <li class="hover:text-white transition-colors">DM Marketing & Outreach</li>
+                        <li class="hover:text-white transition-colors">Search Engine Optimization (SEO)</li>
+                        <li class="hover:text-white transition-colors">Social Media Management (SMM)</li>
+                        <li class="hover:text-white transition-colors">Business Listings Optimization</li>
+                        <li class="hover:text-white transition-colors">Content & Digital Strategy</li>
+                        <li class="hover:text-white transition-colors">Custom Digital Growth Solutions</li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Navigation -->
+                <div class="md:col-span-3 space-y-3">
+                    <span class="text-xs font-mono text-white uppercase tracking-wider block mb-2">// QUICK LINKS</span>
+                    <ul class="space-y-2 text-xs font-mono text-gray-400">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Our Services</a></li>
+                        <li><a href="#why-us" class="hover:text-white transition-colors">Why Choose Us</a></li>
+                        <li><a href="#team" class="hover:text-white transition-colors">Leadership</a></li>
+                        <li><a href="#philosophy" class="hover:text-white transition-colors">Philosophy</a></li>
+                        <li><a href="#approach" class="hover:text-white transition-colors">The Approach</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Line -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-500 gap-4">
+                <span>© <span id="current-year">2026</span> ELEVERA DIGITAL MARKETING. ALL RIGHTS RESERVED.</span>
+                <span class="text-gray-400">AYUSH KOTWAL & RAGHAV SHARMA — FOUNDING LEADERSHIP</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contact-modal" class="fixed inset-0 z-[90] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 md:p-12 border border-white/20 relative shadow-2xl scale-95 transition-transform duration-500" id="contact-modal-box">
+            <button onclick="closeContactModal()" class="absolute top-6 right-6 p-2 rounded-full border border-white/10 text-gray-400 hover:text-white hover:border-white/40 transition-colors">
+                ✕
+            </button>
+
+            <span class="text-xs font-mono text-brand-cyan tracking-widest uppercase block mb-2">// CONNECT WITH ELEVERA</span>
+            <h3 class="text-2xl md:text-4xl font-extrabold uppercase text-white tracking-tight mb-6">
+                BUILD YOUR PRESENCE TODAY.
+            </h3>
+
+            <form id="agency-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 uppercase mb-2">Name / Organization</label>
+                    <input type="text" required placeholder="Alex Morgan / TechCorp" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-accent transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 uppercase mb-2">Work Email</label>
+                    <input type="email" required placeholder="alex@company.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-accent transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 uppercase mb-2">Primary Service Interest</label>
+                    <select class="w-full bg-brand-black border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-accent transition-colors">
+                        <option>Full Digital Growth Solutions</option>
+                        <option>DM Marketing & Direct Outreach</option>
+                        <option>Search Engine Optimization (SEO)</option>
+                        <option>Social Media Management (SMM)</option>
+                        <option>Business Listings & Local Visibility</option>
+                        <option>Content & Digital Strategy</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-gray-400 uppercase mb-2">Growth Objectives</label>
+                    <textarea rows="3" placeholder="Tell us about your brand goals..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-accent transition-colors"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-accent to-brand-cyan text-white font-bold uppercase tracking-wider text-xs hover:opacity-90 transition-opacity">
+                    TRANSMIT INQUIRY →
+                </button>
+            </form>
+
+            <div id="form-success-msg" class="hidden text-center py-12">
+                <div class="w-16 h-16 bg-brand-emerald/20 text-brand-emerald rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
+                <h4 class="text-2xl font-bold text-white uppercase mb-2">INQUIRY TRANSMITTED</h4>
+                <p class="text-sm text-gray-400">The Elevera strategic team will connect with you within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Dynamic Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. Lenis Smooth Scroll
+        let lenis;
+        if (!prefersReducedMotion) {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        }
+
+        window.addEventListener('load', () => {
+            let count = 0;
+            const counterEl = document.getElementById('loader-counter');
+            const barEl = document.getElementById('loader-bar');
+            
+            const interval = setInterval(() => {
+                count += Math.floor(Math.random() * 15) + 6;
+                if (count >= 100) {
+                    count = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        gsap.to('#page-loader', {
+                            yPercent: -100,
+                            duration: 0.9,
+                            ease: 'power4.inOut',
+                            onComplete: () => {
+                                document.getElementById('page-loader').style.display = 'none';
+                                initHeroAnimations();
+                            }
+                        });
+                    }, 200);
+                }
+                counterEl.textContent = String(count).padStart(2, '0') + '%';
+                barEl.style.width = count + '%';
+            }, 50);
+        });
+
+        function initHeroAnimations() {
+            if (prefersReducedMotion) return;
+
+            gsap.from('.hero-anim', {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out'
+            });
+        }
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            if (cursorGlow) {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            }
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header Blur on Scroll
+        ScrollTrigger.create({
+            start: 'top -50',
+            onUpdate: (self) => {
+                const nav = document.getElementById('main-nav');
+                if (self.scroll() > 50) {
+                    nav.classList.add('glass-nav', 'py-4');
+                    nav.classList.remove('py-6');
+                } else {
+                    nav.classList.remove('glass-nav', 'py-4');
+                    nav.classList.add('py-6');
+                }
+            }
+        });
+
+        // Interactive Statement Word Reveal
+        const statementWords = document.querySelectorAll('#statement-text .word-reveal');
+        gsap.to(statementWords, {
+            scrollTrigger: {
+                trigger: '#interactive-statement',
+                start: 'top 75%',
+                end: 'bottom 40%',
+                scrub: 1
+            },
+            opacity: 1,
+            stagger: 0.2,
+            color: '#ffffff',
+            ease: 'none'
+        });
+
+        // Why Elevera Vertical Highlight Updates
+        const whyItems = document.querySelectorAll('.why-item');
+        const activeTitle = document.getElementById('active-pillar-title');
+        const activeDesc = document.getElementById('active-pillar-desc');
+        const progressBar = document.getElementById('pillar-progress-bar');
+
+        whyItems.forEach((item, idx) => {
+            ScrollTrigger.create({
+                trigger: item,
+                start: 'top 60%',
+                end: 'bottom 40%',
+                onEnter: () => updateWhyPillar(item, idx),
+                onEnterBack: () => updateWhyPillar(item, idx)
+            });
+        });
+
+        function updateWhyPillar(item, idx) {
+            whyItems.forEach(i => i.classList.add('opacity-50'));
+            item.classList.remove('opacity-50');
+            
+            if (activeTitle && activeDesc && progressBar) {
+                activeTitle.textContent = item.dataset.title;
+                activeDesc.textContent = item.dataset.desc;
+                progressBar.style.width = ((idx + 1) * 25) + '%';
+            }
+        }
+
+        const approachSteps = [
+            {
+                num: "01",
+                title: "DISCOVER",
+                body: "Understand the business, target audience personas, competitive positioning, and baseline digital presence to uncover untapped conversion levers."
+            },
+            {
+                num: "02",
+                title: "STRATEGIZE",
+                body: "Identify key digital opportunities and formulate a focused growth blueprint tailored around brand reach parameters and channels."
+            },
+            {
+                num: "03",
+                title: "EXECUTE",
+                body: "Turn strategy into high-impact action through direct outreach, search optimization, synchronized local listings, and strategic content SMM."
+            },
+            {
+                num: "04",
+                title: "OPTIMIZE",
+                body: "Continuously refine performance, visibility, and engagement using real-time insights to ensure maximum efficiency."
+            },
+            {
+                num: "05",
+                title: "GROW",
+                body: "Build a stronger, more resilient digital foundation for long-term brand authority, continuous audience expansion, and revenue scaling."
+            }
+        ];
+
+        let currentApproachIndex = 0;
+
+        function updateApproachUI(index) {
+            currentApproachIndex = index;
+            const data = approachSteps[index];
+
+            const titleEl = document.getElementById('approach-title');
+            const numEl = document.getElementById('approach-number');
+            const bodyEl = document.getElementById('approach-body');
+            const indicatorEl = document.getElementById('approach-count-indicator');
+
+            gsap.to('#approach-content-box', {
+                opacity: 0,
+                y: -10,
+                duration: 0.2,
+                onComplete: () => {
+                    titleEl.textContent = data.title;
+                    numEl.textContent = data.num;
+                    bodyEl.textContent = data.body;
+                    indicatorEl.textContent = `PHASE ${index + 1} OF 5`;
+
+                    gsap.to('#approach-content-box', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.3
+                    });
+                }
+            });
+
+            document.querySelectorAll('.approach-tab').forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('border-brand-accent');
+                    tab.classList.remove('border-white/10', 'opacity-60');
+                } else {
+                    tab.classList.remove('border-brand-accent');
+                    tab.classList.add('border-white/10', 'opacity-60');
+                }
+            });
+        }
+
+        function setApproachStep(stepNum) {
+            updateApproachUI(stepNum - 1);
+        }
+
+        function nextApproachStep() {
+            const nextIdx = (currentApproachIndex + 1) % approachSteps.length;
+            updateApproachUI(nextIdx);
+        }
+
+        function prevApproachStep() {
+            const prevIdx = (currentApproachIndex - 1 + approachSteps.length) % approachSteps.length;
+            updateApproachUI(prevIdx);
+        }
+
+        function openContactModal() {
+            const modal = document.getElementById('contact-modal');
+            const box = document.getElementById('contact-modal-box');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            box.classList.remove('scale-95');
+            box.classList.add('scale-100');
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            const box = document.getElementById('contact-modal-box');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            box.classList.add('scale-95');
+            box.classList.remove('scale-100');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('agency-contact-form').classList.add('hidden');
+            document.getElementById('form-success-msg').classList.remove('hidden');
+        }
+
+        // Mobile Nav Drawer
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMobileNavBtn = document.getElementById('close-mobile-nav');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+        function openMobileMenu() {
+            mobileNavOverlay.classList.remove('translate-x-full');
+        }
+
+        function closeMobileMenu() {
+            mobileNavOverlay.classList.add('translate-x-full');
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (closeMobileNavBtn) closeMobileNavBtn.addEventListener('click', closeMobileMenu);
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        function initThreeJS() {
+            if (prefersReducedMotion) return;
+
+            // Hero Canvas Particles
+            const heroCanvas = document.getElementById('hero-canvas');
+            if (heroCanvas) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                const count = 750;
+                const geometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(count * 3);
+                
+                for (let i = 0; i < count * 3; i += 3) {
+                    positions[i] = (Math.random() - 0.5) * 15;
+                    positions[i + 1] = (Math.random() - 0.5) * 15;
+                    positions[i + 2] = (Math.random() - 0.5) * 15;
+                }
+
+                geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+                const material = new THREE.PointsMaterial({
+                    color: 0x6366f1,
+                    size: 0.035,
+                    transparent: true,
+                    opacity: 0.6
+                });
+
+                const particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+
+                camera.position.z = 5;
+
+                function animateHeroCanvas() {
+                    requestAnimationFrame(animateHeroCanvas);
+                    particles.rotation.y += 0.0008;
+                    particles.rotation.x += 0.0004;
+                    renderer.render(scene, camera);
+                }
+                animateHeroCanvas();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            // Cinematic Wireframe Orb
+            const orbCanvas = document.getElementById('orb-canvas');
+            if (orbCanvas) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, orbCanvas.clientWidth / orbCanvas.clientHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: orbCanvas, alpha: true, antialias: true });
+                renderer.setSize(orbCanvas.clientWidth, orbCanvas.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                const geometry = new THREE.IcosahedronGeometry(2, 25);
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0x22d3ee,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.25
+                });
+
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+
+                camera.position.z = 4.5;
+
+                function animateOrb() {
+                    requestAnimationFrame(animateOrb);
+                    sphere.rotation.x += 0.003;
+                    sphere.rotation.y += 0.005;
+                    renderer.render(scene, camera);
+                }
+                animateOrb();
+            }
+        }
+
+        window.onload = function() {
+            initThreeJS();
+        };
+    </script>
+</body>
+</html>
